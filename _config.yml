@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "US"
-title                    : "Angelo Diaz Reyes"
+title                    : "Home"
 title_separator          : "-"
 name                     : &name "Angelo Diaz Reyes"
 description              : &description "personal description"
@@ -22,8 +22,8 @@ repository               : "ad1629/ad1629.github.io"
 author:
   # Biographic information
   avatar           : "angelo_profile.png"
-  name             : # "Angelo"
-  pronouns         : # example: "He/him"  
+  name             : "Angelo Diaz"
+  pronouns         : "He/him"  
   bio              : "PhD candidate in Economics"
   employer         : "Georgetown University"
   uri              : # URL
