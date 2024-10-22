@@ -3,7 +3,6 @@ title: "Georgetown University"
 collection: teaching
 type: "TA and Lecture, Undergraduate course"
 venue: "Georgetown University, Department of Economics"
-date: 2014-01-01
 location: "Washington, DC"
 ---
 
