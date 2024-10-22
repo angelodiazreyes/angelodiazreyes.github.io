@@ -1,20 +1,14 @@
 ---
-title: "Teaching experience 2"
+title: "University of Santiago, Chile"
 collection: teaching
-type: "Workshop"
-permalink: /teaching/2015-spring-teaching-1
-venue: "University 1, Department"
-date: 2015-01-01
-location: "City, Country"
+type: "TA and Lecture, Undergraduate and master courses"
+venue: "University of Santiago, Chile, Department of Economics"
+location: "Santiago, Chile"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
+Lecture: Microeconometrics- Master (2022)
+         Principles of Introduction to Economics,
+         Principles of Microeconomics, Principles of Microeconomics and Economics and Business (2015-2017)
 
-Heading 1
-======
 
-Heading 2
-======
-
-Heading 3
 ======
