@@ -13,4 +13,4 @@ I hold a B.Sc. in Economics (Hons) and a Master in Financial Economics (Hons) fr
 
 **Primary fields:** Applied Microeconomics, Crime
 
-**Seconday field:** Development economics
+**Seconday field:** Development Economics
