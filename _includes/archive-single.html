@@ -12,6 +12,14 @@
       <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
     </h2>
 
+    {% if post.authors %}
+      <p><strong>Authors:</strong>
+        {% for author in post.authors %}
+          <a href="{{ author.link }}" target="_blank">{{ author.name }}</a>{% if forloop.last == false %}, {% endif %}
+        {% endfor %}
+      </p>
+    {% endif %}
+    
     {% if post.excerpt %}
       <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
     {% endif %}
@@ -19,7 +27,5 @@
     {% if post.paperurl %}
       <p><a href="{{ post.paperurl }}" target="_blank">Download Paper</a></p>
     {% endif %}
-
   </article>
 </div>
-
