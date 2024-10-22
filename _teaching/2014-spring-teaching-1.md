@@ -7,7 +7,8 @@ location: "Washington, DC"
 ---
 
 Lecture: ECON 101, Intermediate Micro (Summer 2023)
-Teaching Assistnt: Econ Principles Micro (2022)
+
+Teaching Assistant: Econ Principles Micro (2022)
 
 ======
 
