@@ -11,8 +11,8 @@ authors:
     link: "https://sites.google.com/georgetown.edu/jjnaddeo/research"
   - name: "Neel U. Sukhatme"
     link: "https://www.law.georgetown.edu/faculty/neel-u-sukhatme/"
-paperurl: "http://ad1629.github.io/files/paper2.pdf"
-slidesurl: "http://ad1629.github.io/files/slides2.pdf"
 ---
 
+paperurl: "http://ad1629.github.io/files/paper2.pdf"
+slidesurl: "http://ad1629.github.io/files/slides2.pdf"
 
