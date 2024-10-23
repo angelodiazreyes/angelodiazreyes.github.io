@@ -10,5 +10,5 @@ Lecture: Industrial Organization,
          Microeconomics I,
          Microeconomics II (2016-2018)
 
-======
+
 
