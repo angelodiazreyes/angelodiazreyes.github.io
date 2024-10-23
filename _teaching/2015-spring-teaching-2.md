@@ -1,7 +1,7 @@
 ---
 title: "University of Santiago, Chile"
 collection: teaching
-type: "TA and Lecture, Undergraduate and master courses"
+type: "Lecture, Undergraduate and master courses"
 venue: "University of Santiago, Chile, Department of Economics"
 location: "Santiago, Chile"
 ---
