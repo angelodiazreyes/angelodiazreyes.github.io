@@ -5,8 +5,12 @@ permalink: /teaching/
 author_profile: true
 ---
 
-{% include base_path %}
-
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
+{% for post in site.teaching %}
+  <div class="teaching__item">
+    <h2>{{ post.title }}</h2>
+    <p><strong>University:</strong> {{ post.university }}</p>
+    <p><strong>Course:</strong> {{ post.excerpt }}</p>
+    <p>{{ post.content }}</p>
+  </div>
 {% endfor %}
+
