@@ -12,7 +12,7 @@ title                    : "Home"
 title_separator          : "-"
 name                     : &name "Angelo Diaz Reyes"
 description              : &description "personal description"
-url                      : https://ad1629.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://angelodiazreyes.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
 
