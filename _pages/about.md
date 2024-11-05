@@ -11,6 +11,6 @@ I am an applied microeconomist specializing in social interactions, development,
 
 I hold a B.Sc. in Economics (Hons) and a Master in Financial Economics (Hons) from the University of Santiago, Chile, as well as a Master in Economics from Georgetown University. 
 
-**Primary fields:** Applied Microeconomics, Crime
+**Primary fields:** Applied Microeconomics, Development Economics, Crime
 
-**Seconday field:** Development Economics, Labor
+**Seconday field:** Labor
