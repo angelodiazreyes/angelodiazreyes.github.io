@@ -1,15 +1,15 @@
 ---
 permalink: /
-title: "Hello"
+title: 
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-I am an applied microeconomist specializing in social interactions, development, and crime. My research focuses on analyzing detailed data to understand how exposure to certain types of individuals influences future behavior.  
+I am a Ph.D. candidate in Economics at Georgetown University. I am an applied microeconomist with research interests spanning the fields of Development Economics and Labor Economics. My current research agenda focuses on the role of social interactions in the economics of crime.
 
-I hold a B.Sc. in Economics (Hons) and a Master in Financial Economics (Hons) from the University of Santiago, Chile, as well as a Master in Economics from Georgetown University. 
+I hold a B.Sc. in Economics (Hons) and a Master of Financial Economics (Hons) from the University of Santiago, Chile, as well as a Master of Economics from Georgetown University.
 
 **Primary fields:** Applied Microeconomics, Development Economics, Crime
 
