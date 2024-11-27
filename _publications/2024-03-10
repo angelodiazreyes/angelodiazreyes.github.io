@@ -1,0 +1,14 @@
+---
+title: "Indirect Peer Effects"
+collection: publications
+category: conferences
+excerpt: "Manski (1993) identifies three potential sources of correlation between peer behavior and individual behavior: endogenous peer effects, contextual peer effects, and correlated effects. Empirical studies often struggle to disentangle endogenous peer effects from contextual ones. Building on the work of Marchand (2020) and utilizing detailed cell-level data from a U.S. jail, we construct exposure variables using the pre-treatment characteristics of both peers and their second-degree connections (peers of peers). This approach allows us to distinguish direct peer effects from indirect peer effects (endogenous peer effects in Marchand’s framework).
+Unlike Marchand, our analysis, which employs a linear-in-mean model, finds evidence of direct and indirect peer effects of comparable magnitude. These results are statistically significant and have important policy implications. Specifically, they suggest that the allocation of inmates and their movements within the jail should account for these peer effects to optimize outcomes."
+authors:
+  - name: "Angelo Diaz Reyes"
+    link: # "https://yourwebsite.com"
+  - name: "J.J. Naddeo"
+    link: "https://sites.google.com/georgetown.edu/jjnaddeo/research"
+  - name: "Neel U. Sukhatme"
+    link: "https://www.law.georgetown.edu/faculty/neel-u-sukhatme/"
+---
