@@ -2,13 +2,15 @@
 title: "Peer Effects and timing dimmension"
 collection: publications
 category: conferences
+excerpt: "The linear-in-mean model has long been a workhorse in empirical research. Substantial theoretical and empirical evidence suggests that peers significantly influence various outcomes, including crime, educational performance, and prosocial behavior. However, the mean may not always be the most appropriate functional form for testing peer effects. In this context, Boucher et al. (2024) propose a flexible theoretical model coupled with structural estimation to identify the optimal functional form. Nevertheless, their framework overlooks the temporal dimension of interactions. Are initial interactions more relevant than later ones? In this project, we leverage detailed cell-level data from a U.S. jail to extend the theoretical model by incorporating the timing of peer interactions."
 authors:
-  - name: "Bhavya Srivastava"
-    link: "https://www.bhavyasrivastava.com/index.html"
   - name: "Angelo Diaz Reyes"
     link: # "https://yourwebsite.com"
-  - name: "Camila Gomez"
-    link: # "https://sites.google.com/georgetown.edu/jjnaddeo/research"
-  - name: "Satyam Anand"
-    link: # "https://www.law.georgetown.edu/faculty/neel-u-sukhatme/"
+  - name: "J.J. Naddeo"
+    link: "https://sites.google.com/georgetown.edu/jjnaddeo/research"
+  - name: "Neel U. Sukhatme"
+    link: "https://www.law.georgetown.edu/faculty/neel-u-sukhatme/"
 ---
+
+
+
