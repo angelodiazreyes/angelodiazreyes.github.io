@@ -1,5 +1,5 @@
 ---
-title: "Indirect Peer Effects"
+title: "Direct and Indirect Influences on Recidivism in jail"
 collection: publications
 category: conferences
 excerpt: "Manski (1993) identifies three primary sources of correlation between peer behavior and individual behavior: endogenous peer effects, contextual peer effects, and correlated effects. While distinguishing among these mechanisms is critical for understanding peer influence, empirical studies often struggle to separate endogenous peer effects from contextual ones due to data limitations and methodological challenges. This paper builds on the framework of Marchand (2020) and leverages unique cell-level data from a U.S. jail to address this issue. By constructing exposure variables based on the pre-treatment characteristics of both peers and their second-degree connections (peers of peers), we disentangle direct peer effects from indirect peer effects, the latter corresponding to endogenous peer effects in Marchand’s model.
