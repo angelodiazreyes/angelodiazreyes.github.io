@@ -115,11 +115,15 @@
 {% if site.social %}
   <script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
-      "@type" : "{% if site.social.type %}{{ site.social.type }}{% else %}Person{% endif %}",
-      "name" : "{{ site.social.name | default: site.name }}",
-      "url" : {{ seo_url | jsonify }},
-      "sameAs" : {{ site.social.links | jsonify }}
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Angelo Diaz Reyes",
+      "url": "https://angelodiazreyes.github.io/",
+      "description": "Angelo Diaz Reyes - Applied Microeconomist specializing in social interaction, development, and crime.",
+      "sameAs": [
+      "https://www.linkedin.com/in/angelo-díaz-reyes-b51185123/",
+      "https://angelodiazreyes.github.io"
+      ]
     }
   </script>
 {% endif %}
