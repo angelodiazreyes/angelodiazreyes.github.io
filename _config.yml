@@ -8,10 +8,10 @@
 
 # Basic Site Settings
 locale                   : "US"
-title                    : "Home"
+title                    : "Angelo Diaz Reyes"
 title_separator          : "-"
 name                     : &name "Angelo Diaz Reyes"
-description              : &description "personal description"
+description              : "Angelo Diaz Reyes - Applied Microeconomist specializing in social interaction, development, and crime."
 url                      : https://angelodiazreyes.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
