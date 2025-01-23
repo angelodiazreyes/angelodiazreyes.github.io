@@ -1,5 +1,5 @@
 ---
-title: "Peer Effects in Jail"
+title: "First and Worst: Evidence of Peer Effects in a Large U.S. Jail"
 collection: publications
 category: manuscripts
 permalink: /publication/2010-10-01-paper-title-number-2
