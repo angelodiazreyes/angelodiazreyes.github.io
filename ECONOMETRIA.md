@@ -36,6 +36,8 @@ Nombra los archivos con un número al comienzo para controlar su orden y título
 03-variables-instrumentales.pdf
 ```
 
+Usa solamente letras sin tilde, números y guiones en el nombre del archivo. Evita espacios, tildes, `ñ` y símbolos porque pueden producir enlaces incompatibles en GitHub Pages. El título visible sí se mostrará separado y con mayúsculas.
+
 Por ejemplo, `03-variables-instrumentales.pdf` aparecerá como la clase **03 · Variables Instrumentales**.
 
 ### Subir un PDF desde GitHub
