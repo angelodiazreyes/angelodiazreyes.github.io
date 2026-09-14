@@ -7,6 +7,7 @@
   const modalBody = document.querySelector("#econ-modal-body");
   const code = document.querySelector("#econ-code");
   const result = document.querySelector("#econ-result");
+  const figures = document.querySelector("#econ-figures");
   const run = document.querySelector("#econ-run");
   const status = document.querySelector("#econ-status");
   let pyodide;
@@ -105,6 +106,8 @@
   function selectExample(example) {
     currentExample = example;
     code.value = example.code;
+    figures.replaceChildren();
+    result.textContent = "Listo. Presiona Ejecutar para ver el resultado.";
     document.querySelector("#econ-filename").textContent = example.filename;
     document.querySelectorAll(".econ-example").forEach((button) => button.classList.toggle("is-active", button.dataset.id === example.id));
   }
@@ -131,10 +134,43 @@
     pyodide.setStderr({ batched: (line) => { text += `${line}\n`; } });
     try {
       await pyodide.loadPackagesFromImports(code.value);
+      await pyodide.runPythonAsync(`
+import sys
+if "matplotlib.pyplot" in sys.modules:
+    import matplotlib.pyplot as plt
+    plt.close("all")
+`);
       const value = await pyodide.runPythonAsync(code.value);
       result.textContent = text || (value === undefined ? "✓ Código ejecutado sin salida." : String(value));
+      const imageProxy = await pyodide.runPythonAsync(`
+import io
+import base64
+
+_econ_images = []
+if "matplotlib.pyplot" in sys.modules:
+    import matplotlib.pyplot as plt
+    for _econ_number in plt.get_fignums():
+        _econ_buffer = io.BytesIO()
+        plt.figure(_econ_number).savefig(
+            _econ_buffer, format="png", dpi=135,
+            bbox_inches="tight", facecolor="white"
+        )
+        _econ_images.append(
+            "data:image/png;base64," + base64.b64encode(_econ_buffer.getvalue()).decode("ascii")
+        )
+_econ_images
+`);
+      const imageUrls = imageProxy.toJs ? Array.from(imageProxy.toJs()) : [];
+      imageProxy.destroy?.();
+      figures.replaceChildren(...imageUrls.map((url, index) => {
+        const image = document.createElement("img");
+        image.src = url;
+        image.alt = `Gráfico generado por el ejercicio ${index + 1}`;
+        return image;
+      }));
     } catch (error) {
       result.textContent = error.message;
+      figures.replaceChildren();
     } finally {
       run.disabled = false;
       run.textContent = "▶ Ejecutar";

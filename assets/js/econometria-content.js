@@ -29,6 +29,7 @@ const ECON_PYTHON_EXAMPLES = [
     filename: "muestra_estimacion.py",
     code: `# Clase 1: de una población a una estimación muestral
 import numpy as np
+import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(123)
 
@@ -51,7 +52,18 @@ print(f"Media poblacional:       $ {mu:,.0f}")
 print(f"Media de la muestra:     $ {mean_hat:,.0f}")
 print(f"Desviación estándar:     $ {sample_sd:,.0f}")
 print(f"Error estándar:          $ {standard_error:,.0f}")
-print(f"IC aproximado del 95%:   [$ {lower:,.0f}, $ {upper:,.0f}]")`
+print(f"IC aproximado del 95%:   [$ {lower:,.0f}, $ {upper:,.0f}]")
+
+plt.figure(figsize=(8, 4.5))
+plt.hist(sample, bins=12, color="#68a7ff", edgecolor="white", alpha=0.85)
+plt.axvline(mu, color="#171b20", linewidth=2, label="Media poblacional")
+plt.axvline(mean_hat, color="#e85d3f", linewidth=2, label="Media muestral")
+plt.axvspan(lower, upper, color="#c7ff50", alpha=0.28, label="IC 95%")
+plt.title("Una muestra aleatoria de ingresos")
+plt.xlabel("Ingreso")
+plt.ylabel("Frecuencia")
+plt.legend()
+plt.tight_layout()`
   },
   {
     id: "distribucion-muestral",
@@ -60,6 +72,7 @@ print(f"IC aproximado del 95%:   [$ {lower:,.0f}, $ {upper:,.0f}]")`
     filename: "distribucion_muestral.py",
     code: `# Clase 1: repetir el muestreo permite estudiar un estimador
 import numpy as np
+import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(123)
 population = rng.lognormal(mean=13, sigma=0.6, size=100_000)
@@ -83,7 +96,19 @@ for n in [10, 50, 200]:
         f" {theoretical_se:12,.0f}"
     )
 
-print("\\nAl aumentar n, la distribución de la media se concentra alrededor de μ.")`
+print("\\nAl aumentar n, la distribución de la media se concentra alrededor de μ.")
+
+fig, axes = plt.subplots(1, 3, figsize=(11, 3.5), sharey=True)
+for axis, n in zip(axes, [10, 50, 200]):
+    samples = rng.choice(population, size=(B, n), replace=True)
+    sample_means = samples.mean(axis=1)
+    axis.hist(sample_means, bins=28, color="#68a7ff", edgecolor="white")
+    axis.axvline(mu, color="#e85d3f", linewidth=2)
+    axis.set_title(f"n = {n}")
+    axis.set_xlabel("Media muestral")
+axes[0].set_ylabel("Frecuencia")
+fig.suptitle("Distribución muestral: mayor n, menor dispersión")
+plt.tight_layout()`
   },
   {
     id: "ley-grandes-numeros",
@@ -92,24 +117,38 @@ print("\\nAl aumentar n, la distribución de la media se concentra alrededor de 
     filename: "ley_grandes_numeros.py",
     code: `# Clase 1: consistencia de la media muestral
 import numpy as np
+import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(123)
 population = rng.lognormal(mean=13, sigma=0.6, size=100_000)
 mu = population.mean()
 B = 1_500
 epsilon = 50_000
+n_values = [5, 10, 30, 50, 100, 300, 1_000]
+probabilities = []
 
 print(f"Distancia considerada grande: $ {epsilon:,.0f}")
 print(" n   P(|media muestral - μ| > distancia)")
 print("---- ------------------------------------")
 
-for n in [5, 10, 30, 50, 100, 300, 1_000]:
+for n in n_values:
     samples = rng.choice(population, size=(B, n), replace=True)
     sample_means = samples.mean(axis=1)
     probability = np.mean(np.abs(sample_means - mu) > epsilon)
+    probabilities.append(probability)
     print(f"{n:4d} {probability:>19.3%}")
 
-print("\\nLa probabilidad disminuye con n: la media muestral converge a μ.")`
+print("\\nLa probabilidad disminuye con n: la media muestral converge a μ.")
+
+plt.figure(figsize=(8, 4.5))
+plt.plot(n_values, probabilities, marker="o", linewidth=2.5, color="#2563eb")
+plt.xscale("log")
+plt.ylim(bottom=0)
+plt.title("Ley de los Grandes Números")
+plt.xlabel("Tamaño de muestra n (escala logarítmica)")
+plt.ylabel("Probabilidad de alejarse de μ")
+plt.grid(alpha=0.25)
+plt.tight_layout()`
   },
   {
     id: "teorema-central-limite",
@@ -118,6 +157,7 @@ print("\\nLa probabilidad disminuye con n: la media muestral converge a μ.")`
     filename: "teorema_central_limite.py",
     code: `# Clase 1: normalidad aproximada de la media estandarizada
 import numpy as np
+import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(123)
 population = rng.lognormal(mean=13, sigma=0.6, size=100_000)
@@ -138,7 +178,19 @@ print(f"Media de z:                 {z.mean():.3f}   (teoría: 0)")
 print(f"Desviación estándar de z:  {z.std(ddof=1):.3f}   (teoría: 1)")
 print(f"Percentiles 2.5% y 97.5%:  [{q025:.3f}, {q975:.3f}]")
 print(f"Proporción entre -1.96 y 1.96: {inside_95:.1%}")
-print("\\nAunque los ingresos son asimétricos, la media estandarizada es casi normal.")`
+print("\\nAunque los ingresos son asimétricos, la media estandarizada es casi normal.")
+
+x = np.linspace(-4, 4, 400)
+normal_density = np.exp(-(x ** 2) / 2) / np.sqrt(2 * np.pi)
+plt.figure(figsize=(8, 4.5))
+plt.hist(z, bins=35, density=True, color="#68a7ff", edgecolor="white", alpha=0.8, label="Simulación")
+plt.plot(x, normal_density, color="#e85d3f", linewidth=2.5, label="Normal estándar")
+plt.axvspan(-1.96, 1.96, color="#c7ff50", alpha=0.2, label="95% teórico")
+plt.title("Teorema Central del Límite")
+plt.xlabel("Media muestral estandarizada (z)")
+plt.ylabel("Densidad")
+plt.legend()
+plt.tight_layout()`
   },
   {
     id: "diferencia-medias",
