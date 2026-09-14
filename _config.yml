@@ -11,7 +11,7 @@ locale                   : "US"
 title                    : "Home"
 title_separator          : "-"
 name                     : &name "Angelo Diaz Reyes"
-description              : "Angelo Diaz Reyes - Applied Microeconomist specializing in social interaction, development, and crime."
+description              : "Angelo Diaz Reyes - Assistant Professor of Economics at the University of Santiago, Chile."
 url                      : https://angelodiazreyes.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
@@ -21,11 +21,11 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "angelo_picture.png"
+  avatar           : "foto_angelo.jpeg"
   name             : " "
   pronouns         : "He/him"  
   bio              : " "
-  employer         : "Georgetown University"
+  employer         : "University of Santiago, Chile"
   uri              : # URL
   email            : "ad1629@georgetown.edu" 
 
