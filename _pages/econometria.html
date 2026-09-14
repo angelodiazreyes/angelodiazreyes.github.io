@@ -1,7 +1,7 @@
 ---
 layout: archive
-title: "Econometría"
-permalink: /econometria/
+title: "Clases"
+permalink: /clases/
 author_profile: true
 ---
 
@@ -9,9 +9,10 @@ author_profile: true
 
 <div class="econ-app" id="econometria-app">
   <header class="econ-hero">
-    <p class="econ-kicker">Curso · Econometría estructural</p>
-    <h1>Teoría, estimación<br><span>y código.</span></h1>
-    <p class="econ-lead">Material de clases y ejercicios reproducibles en Python.</p>
+    <p class="econ-kicker">Docencia · Material de cursos</p>
+    <h1>Clases, apuntes<br><span>y código.</span></h1>
+    <p class="econ-lead">Selecciona un curso para consultar presentaciones y ejercicios reproducibles en Python.</p>
+    <div class="econ-course-picker" id="econ-courses" aria-label="Cursos disponibles"></div>
     <nav class="econ-tabs" aria-label="Secciones del curso">
       <button class="econ-tab is-active" data-econ-view="slides">Slides</button>
       <button class="econ-tab" data-econ-view="python">Python Lab</button>
@@ -20,7 +21,7 @@ author_profile: true
 
   <section class="econ-view is-active" id="econ-slides">
     <div class="econ-section-head">
-      <div><span>01</span><h2>Presentaciones</h2></div>
+      <div><span>01</span><h2 id="econ-slides-title">Presentaciones</h2></div>
       <label class="econ-search"><span aria-hidden="true">⌕</span><input id="econ-search" type="search" placeholder="Buscar tema…" aria-label="Buscar presentaciones"></label>
     </div>
     <div class="econ-grid" id="econ-grid"></div>
@@ -29,7 +30,7 @@ author_profile: true
 
   <section class="econ-view" id="econ-python">
     <div class="econ-section-head">
-      <div><span>02</span><h2>Laboratorio de Python</h2></div>
+      <div><span>02</span><h2 id="econ-python-title">Laboratorio de Python</h2></div>
       <p class="econ-status" id="econ-status"><i></i> Preparando Python…</p>
     </div>
     <div class="econ-lab">

@@ -1,12 +1,27 @@
-# Cómo actualizar la pestaña Econometría
+# Cómo actualizar la pestaña Clases
 
-La página se encuentra en `/_pages/econometria.html`, pero el contenido que cambiarás habitualmente está en:
+La página pública se encuentra en `/clases/`. Su estructura está en `/_pages/econometria.html`, pero el contenido que cambiarás habitualmente está en:
 
 `/assets/js/econometria-content.js`
 
+## Añadir un curso
+
+Dentro de `ECON_COURSES`, copia un bloque y cambia sus datos:
+
+```js
+{
+  id: "microeconometria",
+  code: "ECO · 03",
+  title: "Microeconometría",
+  description: "Modelos para variables discretas y limitadas."
+}
+```
+
+El valor de `id` conecta el curso con sus slides y códigos.
+
 ## Añadir slides creadas en la página
 
-Dentro de `ECON_SLIDES`, copia uno de los bloques existentes. Cambia `id`, `number`, `title`, `description`, `tag` y el contenido de `pages`.
+Dentro de `ECON_SLIDES`, copia uno de los bloques existentes. Cambia `id`, `course`, `number`, `title`, `description`, `tag` y el contenido de `pages`. El campo `course` debe coincidir con el `id` del curso.
 
 Cada página puede usar:
 
@@ -28,6 +43,7 @@ Cada página puede usar:
 ```js
 {
   id: "demanda-discreta",
+  course: "econometria-aplicada-1",
   number: "04",
   title: "Demanda discreta",
   description: "Modelo logit y aplicaciones.",
@@ -45,11 +61,12 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
-Dentro de `ECON_PYTHON_EXAMPLES`, copia un ejemplo y cambia sus cuatro campos:
+Dentro de `ECON_PYTHON_EXAMPLES`, copia un ejemplo y cambia sus campos. El campo `course` determina en qué curso aparecerá:
 
 ```js
 {
   id: "mi-ejercicio",
+  course: "inferencia-causal",
   title: "Mi ejercicio",
   filename: "mi_ejercicio.py",
   code: `print("Hola")`

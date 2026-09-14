@@ -10,7 +10,26 @@
   const run = document.querySelector("#econ-run");
   const status = document.querySelector("#econ-status");
   let pyodide;
-  let currentExample = ECON_PYTHON_EXAMPLES[0];
+  let currentCourse = ECON_COURSES[0].id;
+  let currentExample;
+
+  document.querySelector("#econ-courses").innerHTML = ECON_COURSES.map((course, index) => `
+    <button class="econ-course ${index === 0 ? "is-active" : ""}" data-course="${course.id}">
+      <span>${course.code}</span><strong>${course.title}</strong><small>${course.description}</small><i>→</i>
+    </button>`).join("");
+
+  function selectCourse(courseId) {
+    currentCourse = courseId;
+    const course = ECON_COURSES.find((item) => item.id === courseId);
+    document.querySelectorAll(".econ-course").forEach((button) => button.classList.toggle("is-active", button.dataset.course === courseId));
+    document.querySelector("#econ-slides-title").textContent = course.title;
+    document.querySelector("#econ-python-title").textContent = `${course.title} · Python`;
+    document.querySelector("#econ-search").value = "";
+    drawCards(ECON_SLIDES.filter((slide) => slide.course === courseId));
+    drawExamples();
+  }
+
+  document.querySelectorAll(".econ-course").forEach((button) => button.addEventListener("click", () => selectCourse(button.dataset.course)));
 
   document.querySelectorAll(".econ-tab").forEach((tab) => tab.addEventListener("click", function () {
     document.querySelectorAll(".econ-tab").forEach((item) => item.classList.toggle("is-active", item === tab));
@@ -51,20 +70,23 @@
 
   document.querySelector("#econ-search").addEventListener("input", function () {
     const query = this.value.toLowerCase().trim();
-    drawCards(ECON_SLIDES.filter((slide) => `${slide.title} ${slide.description} ${slide.tag}`.toLowerCase().includes(query)));
+    drawCards(ECON_SLIDES.filter((slide) => slide.course === currentCourse && `${slide.title} ${slide.description} ${slide.tag}`.toLowerCase().includes(query)));
   });
   document.querySelector("#econ-close").onclick = () => modal.close();
   modal.addEventListener("click", (event) => { if (event.target === modal) modal.close(); });
 
-  document.querySelector("#econ-examples").innerHTML = ECON_PYTHON_EXAMPLES.map((example, index) => `<button class="econ-example ${index === 0 ? "is-active" : ""}" data-id="${example.id}">${example.title}</button>`).join("");
+  function drawExamples() {
+    const examples = ECON_PYTHON_EXAMPLES.filter((example) => example.course === currentCourse);
+    document.querySelector("#econ-examples").innerHTML = examples.map((example, index) => `<button class="econ-example ${index === 0 ? "is-active" : ""}" data-id="${example.id}">${example.title}</button>`).join("");
+    document.querySelectorAll(".econ-example").forEach((button) => button.addEventListener("click", () => selectExample(ECON_PYTHON_EXAMPLES.find((example) => example.id === button.dataset.id))));
+    if (examples.length) selectExample(examples[0]);
+  }
   function selectExample(example) {
     currentExample = example;
     code.value = example.code;
     document.querySelector("#econ-filename").textContent = example.filename;
     document.querySelectorAll(".econ-example").forEach((button) => button.classList.toggle("is-active", button.dataset.id === example.id));
   }
-  document.querySelectorAll(".econ-example").forEach((button) => button.addEventListener("click", () => selectExample(ECON_PYTHON_EXAMPLES.find((example) => example.id === button.dataset.id))));
-
   async function startPython() {
     try {
       pyodide = await loadPyodide();
@@ -101,7 +123,6 @@
   run.addEventListener("click", runPython);
   code.addEventListener("keydown", (event) => { if (event.key === "Enter" && event.shiftKey) { event.preventDefault(); runPython(); } });
   document.querySelector("#econ-reset").onclick = () => selectExample(currentExample);
-  drawCards(ECON_SLIDES);
-  selectExample(currentExample);
+  selectCourse(currentCourse);
   startPython();
 }());
