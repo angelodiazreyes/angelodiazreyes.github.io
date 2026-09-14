@@ -19,7 +19,34 @@ Dentro de `ECON_COURSES`, copia un bloque y cambia sus datos:
 
 El valor de `id` conecta el curso con sus slides y códigos.
 
-## Añadir slides creadas en la página
+## La forma recomendada: subir PDFs
+
+Puedes preparar todas las ecuaciones y gráficos en LaTeX/Beamer. Para publicar una clase solamente debes subir el PDF a la carpeta correspondiente:
+
+- Econometría Aplicada I: `/files/clases/econometria-aplicada-1/`
+- Inferencia Causal: `/files/clases/inferencia-causal/`
+
+No tienes que modificar el código de la página. GitHub detectará el archivo y lo añadirá automáticamente al curso correcto.
+
+Nombra los archivos con un número al comienzo para controlar su orden y título:
+
+```text
+01-introduccion.pdf
+02-regresion-lineal.pdf
+03-variables-instrumentales.pdf
+```
+
+Por ejemplo, `03-variables-instrumentales.pdf` aparecerá como la clase **03 · Variables Instrumentales**.
+
+### Subir un PDF desde GitHub
+
+1. Abre la carpeta del curso en GitHub.
+2. Presiona **Add file → Upload files**.
+3. Arrastra el PDF.
+4. Presiona **Commit changes**.
+5. Espera uno o dos minutos mientras GitHub actualiza la página.
+
+## Añadir slides creadas dentro de la página
 
 Dentro de `ECON_SLIDES`, copia uno de los bloques existentes. Cambia `id`, `course`, `number`, `title`, `description`, `tag` y el contenido de `pages`. El campo `course` debe coincidir con el `id` del curso.
 
@@ -35,9 +62,11 @@ Cada página puede usar:
 }
 ```
 
-## Añadir una presentación PDF
+## Registrar manualmente un PDF
 
-1. Guarda el PDF en `/files/econometria/`.
+Normalmente no necesitas hacer esto. Úsalo solamente si quieres personalizar la descripción, color o duración de una presentación.
+
+1. Guarda el PDF en la carpeta del curso.
 2. Añade este bloque dentro de `ECON_SLIDES`:
 
 ```js
@@ -51,7 +80,7 @@ Cada página puede usar:
   duration: "30 min",
   color: "blue",
   type: "pdf",
-  url: "/files/econometria/demanda-discreta.pdf"
+  url: "/files/clases/econometria-aplicada-1/demanda-discreta.pdf"
 }
 ```
 

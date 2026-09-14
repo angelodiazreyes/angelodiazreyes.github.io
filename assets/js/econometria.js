@@ -13,6 +13,25 @@
   let currentCourse = ECON_COURSES[0].id;
   let currentExample;
 
+  const pdfColors = ["lime", "blue", "orange"];
+  (window.ECON_PDF_FILES || []).forEach((file, index) => {
+    const stem = file.filename.replace(/\.pdf$/i, "");
+    const numberMatch = stem.match(/^(\d+)/);
+    const cleanTitle = stem.replace(/^\d+[-_ ]*/, "").replace(/[-_]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+    ECON_SLIDES.push({
+      id: `pdf-${file.course}-${stem}`,
+      course: file.course,
+      number: numberMatch ? numberMatch[1].padStart(2, "0") : String(index + 1).padStart(2, "0"),
+      title: cleanTitle || "Presentación",
+      description: "Presentación de la clase en formato PDF.",
+      tag: "PDF",
+      duration: "Abrir",
+      color: pdfColors[index % pdfColors.length],
+      type: "pdf",
+      url: file.url
+    });
+  });
+
   document.querySelector("#econ-courses").innerHTML = ECON_COURSES.map((course, index) => `
     <button class="econ-course ${index === 0 ? "is-active" : ""}" data-course="${course.id}">
       <span>${course.code}</span><strong>${course.title}</strong><small>${course.description}</small><i>→</i>

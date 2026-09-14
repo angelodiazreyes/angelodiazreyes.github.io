@@ -24,6 +24,7 @@ author_profile: true
       <div><span>01</span><h2 id="econ-slides-title">Presentaciones</h2></div>
       <label class="econ-search"><span aria-hidden="true">⌕</span><input id="econ-search" type="search" placeholder="Buscar tema…" aria-label="Buscar presentaciones"></label>
     </div>
+    <p class="econ-upload-note">Los PDF guardados en la carpeta del curso aparecen aquí automáticamente.</p>
     <div class="econ-grid" id="econ-grid"></div>
     <p class="econ-empty" id="econ-empty" hidden>No hay presentaciones que coincidan con la búsqueda.</p>
   </section>
@@ -54,6 +55,16 @@ author_profile: true
   <div id="econ-modal-body"></div>
 </dialog>
 
+<script>
+  window.ECON_PDF_FILES = [
+    {% for file in site.static_files %}
+      {% if file.extname == ".pdf" and file.path contains "/files/clases/" %}
+        {% assign pdf_path = file.path | split: "/" %}
+        { course: {{ pdf_path[3] | jsonify }}, filename: {{ file.name | jsonify }}, url: {{ file.path | relative_url | jsonify }} },
+      {% endif %}
+    {% endfor %}
+  ];
+</script>
 <script src="{{ base_path }}/assets/js/econometria-content.js?v={{ site.time | date: '%s' }}"></script>
 <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
 <script src="{{ base_path }}/assets/js/econometria.js?v={{ site.time | date: '%s' }}"></script>

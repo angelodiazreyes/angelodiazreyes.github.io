@@ -19,6 +19,7 @@
 .econ-section-head > div { display:flex; align-items:baseline; gap:1rem; }.econ-section-head h2 { margin:0; font-size:1.8rem; }.econ-section-head > div > span { font:600 .72rem monospace; color:var(--muted); }
 .econ-search { width:min(17rem,100%); border:1px solid var(--line); border-radius:8px; display:flex; align-items:center; gap:.5rem; padding:.55rem .75rem; }
 .econ-search input { border:0; outline:0; width:100%; font-size:.82rem; background:transparent; }
+.econ-upload-note { margin:-.25rem 0 1rem;color:var(--muted);font-size:.72rem; }
 .econ-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
 .econ-card { border:1px solid var(--line); border-radius:12px; background:white; padding:1.25rem; text-align:left; color:var(--ink); cursor:pointer; display:flex; flex-direction:column; min-height:23rem; transition:.2s ease; }
 .econ-card:hover { transform:translateY(-4px); box-shadow:0 14px 35px rgba(20,28,35,.1); }
