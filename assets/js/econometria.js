@@ -18,12 +18,13 @@
     const stem = file.filename.replace(/\.pdf$/i, "");
     const numberMatch = stem.match(/^(\d+)/);
     const cleanTitle = stem.replace(/^\d+[-_ ]*/, "").replace(/[-_]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+    const classNumber = numberMatch ? Number(numberMatch[1]) : index + 1;
     ECON_SLIDES.push({
       id: `pdf-${file.course}-${stem}`,
       course: file.course,
-      number: numberMatch ? numberMatch[1].padStart(2, "0") : String(index + 1).padStart(2, "0"),
-      title: cleanTitle || "Presentación",
-      description: "Presentación de la clase en formato PDF.",
+      number: String(classNumber).padStart(2, "0"),
+      title: `Clase ${classNumber}`,
+      description: cleanTitle || "Presentación de la clase en formato PDF.",
       tag: "PDF",
       duration: "Abrir",
       color: pdfColors[index % pdfColors.length],
@@ -56,7 +57,8 @@
   }));
 
   function drawCards(items) {
-    grid.innerHTML = items.map((slide) => `
+    const orderedItems = items.slice().sort((a, b) => a.number.localeCompare(b.number));
+    grid.innerHTML = orderedItems.map((slide) => `
       <button class="econ-card" data-id="${slide.id}">
         <span class="econ-card-top"><b>${slide.number}</b><i class="${slide.color}"></i></span>
         <span class="econ-card-art ${slide.color}"><em>${slide.number === "01" ? "μ" : slide.number === "02" ? "θ" : "ĝ"}</em></span>
