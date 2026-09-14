@@ -23,60 +23,122 @@ const ECON_SLIDES = [];
 
 const ECON_PYTHON_EXAMPLES = [
   {
-    id: "valor-presente",
+    id: "muestra-estimacion",
     course: "econometria-aplicada-1",
-    title: "Primer cálculo",
-    filename: "valor_presente.py",
-    code: `# Un cálculo sencillo y reproducible
-beta = 0.95
-utility_today = 10
-utility_tomorrow = 12
+    title: "Muestra, estimación y error estándar",
+    filename: "muestra_estimacion.py",
+    code: `# Clase 1: de una población a una estimación muestral
+import numpy as np
 
-present_value = utility_today + beta * utility_tomorrow
-print(f"Valor presente: {present_value:.2f}")`
+rng = np.random.default_rng(123)
+
+# Población ficticia de ingresos: asimétrica y no normal
+population = rng.lognormal(mean=13, sigma=0.6, size=100_000)
+mu = population.mean()
+
+# Una muestra aleatoria de 50 personas
+n = 50
+sample = rng.choice(population, size=n, replace=False)
+mean_hat = sample.mean()
+sample_sd = sample.std(ddof=1)
+standard_error = sample_sd / np.sqrt(n)
+
+# Intervalo aproximado de confianza al 95%
+lower = mean_hat - 1.96 * standard_error
+upper = mean_hat + 1.96 * standard_error
+
+print(f"Media poblacional:       $ {mu:,.0f}")
+print(f"Media de la muestra:     $ {mean_hat:,.0f}")
+print(f"Desviación estándar:     $ {sample_sd:,.0f}")
+print(f"Error estándar:          $ {standard_error:,.0f}")
+print(f"IC aproximado del 95%:   [$ {lower:,.0f}, $ {upper:,.0f}]")`
   },
   {
-    id: "grid-search",
+    id: "distribucion-muestral",
     course: "econometria-aplicada-1",
-    title: "Búsqueda en grilla",
-    filename: "grid_search.py",
-    code: `# Estimación por distancia mínima
-observed_moment = 2.4
-candidates = [x / 10 for x in range(1, 51)]
+    title: "Distribución muestral de la media",
+    filename: "distribucion_muestral.py",
+    code: `# Clase 1: repetir el muestreo permite estudiar un estimador
+import numpy as np
 
-def model_moment(theta):
-    return 0.5 + 0.8 * theta
+rng = np.random.default_rng(123)
+population = rng.lognormal(mean=13, sigma=0.6, size=100_000)
+mu = population.mean()
+sigma = population.std(ddof=0)
+B = 3_000
 
-losses = [(theta, (model_moment(theta) - observed_moment) ** 2)
-          for theta in candidates]
-theta_hat, loss = min(losses, key=lambda item: item[1])
+print(" n | sesgo simulado | EE simulado | sigma/sqrt(n)")
+print("---|----------------|-------------|--------------")
 
-print(f"theta estimado = {theta_hat:.2f}")
-print(f"pérdida = {loss:.6f}")`
+for n in [10, 50, 200]:
+    samples = rng.choice(population, size=(B, n), replace=True)
+    sample_means = samples.mean(axis=1)
+
+    bias = sample_means.mean() - mu
+    simulated_se = sample_means.std(ddof=1)
+    theoretical_se = sigma / np.sqrt(n)
+
+    print(
+        f"{n:3d} | {bias:14,.0f} | {simulated_se:11,.0f} |"
+        f" {theoretical_se:12,.0f}"
+    )
+
+print("\\nAl aumentar n, la distribución de la media se concentra alrededor de μ.")`
   },
   {
-    id: "bellman",
+    id: "ley-grandes-numeros",
     course: "econometria-aplicada-1",
-    title: "Decisión dinámica",
-    filename: "bellman.py",
-    code: `# Iteración de valor: reemplazar o mantener una máquina
-beta = 0.92
-cost_replace = 4.0
-states = range(6)
-value = [0.0] * len(states)
+    title: "Ley de los Grandes Números",
+    filename: "ley_grandes_numeros.py",
+    code: `# Clase 1: consistencia de la media muestral
+import numpy as np
 
-for iteration in range(200):
-    updated = []
-    for age in states:
-        keep = -0.35 * age + beta * value[min(age + 1, 5)]
-        replace = -cost_replace + beta * value[0]
-        updated.append(max(keep, replace))
-    if max(abs(a - b) for a, b in zip(updated, value)) < 1e-9:
-        break
-    value = updated
+rng = np.random.default_rng(123)
+population = rng.lognormal(mean=13, sigma=0.6, size=100_000)
+mu = population.mean()
+B = 1_500
+epsilon = 50_000
 
-print("Iteraciones:", iteration + 1)
-print("Función de valor:", [round(x, 3) for x in value])`
+print(f"Distancia considerada grande: $ {epsilon:,.0f}")
+print(" n   P(|media muestral - μ| > distancia)")
+print("---- ------------------------------------")
+
+for n in [5, 10, 30, 50, 100, 300, 1_000]:
+    samples = rng.choice(population, size=(B, n), replace=True)
+    sample_means = samples.mean(axis=1)
+    probability = np.mean(np.abs(sample_means - mu) > epsilon)
+    print(f"{n:4d} {probability:>19.3%}")
+
+print("\\nLa probabilidad disminuye con n: la media muestral converge a μ.")`
+  },
+  {
+    id: "teorema-central-limite",
+    course: "econometria-aplicada-1",
+    title: "Teorema Central del Límite",
+    filename: "teorema_central_limite.py",
+    code: `# Clase 1: normalidad aproximada de la media estandarizada
+import numpy as np
+
+rng = np.random.default_rng(123)
+population = rng.lognormal(mean=13, sigma=0.6, size=100_000)
+mu = population.mean()
+sigma = population.std(ddof=0)
+
+n = 200
+B = 5_000
+samples = rng.choice(population, size=(B, n), replace=True)
+sample_means = samples.mean(axis=1)
+
+# Estadístico que el TCL aproxima con una N(0, 1)
+z = (sample_means - mu) / (sigma / np.sqrt(n))
+q025, q975 = np.quantile(z, [0.025, 0.975])
+inside_95 = np.mean(np.abs(z) <= 1.96)
+
+print(f"Media de z:                 {z.mean():.3f}   (teoría: 0)")
+print(f"Desviación estándar de z:  {z.std(ddof=1):.3f}   (teoría: 1)")
+print(f"Percentiles 2.5% y 97.5%:  [{q025:.3f}, {q975:.3f}]")
+print(f"Proporción entre -1.96 y 1.96: {inside_95:.1%}")
+print("\\nAunque los ingresos son asimétricos, la media estandarizada es casi normal.")`
   },
   {
     id: "diferencia-medias",
