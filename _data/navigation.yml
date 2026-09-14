@@ -10,6 +10,9 @@ main:
 
   - title: "Teaching"
     url: /teaching/    
+
+  - title: "Econometría"
+    url: /econometria/
     
   - title: "CV"
     url: /cv/
@@ -17,4 +20,3 @@ main:
   - title: "Others"
     url: /others/   
     
-

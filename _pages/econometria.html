@@ -1,0 +1,58 @@
+---
+layout: archive
+title: "Econometría"
+permalink: /econometria/
+author_profile: true
+---
+
+<link rel="stylesheet" href="{{ base_path }}/assets/css/econometria.css">
+
+<div class="econ-app" id="econometria-app">
+  <header class="econ-hero">
+    <p class="econ-kicker">Curso · Econometría estructural</p>
+    <h1>Teoría, estimación<br><span>y código.</span></h1>
+    <p class="econ-lead">Material de clases y ejercicios reproducibles en Python.</p>
+    <nav class="econ-tabs" aria-label="Secciones del curso">
+      <button class="econ-tab is-active" data-econ-view="slides">Slides</button>
+      <button class="econ-tab" data-econ-view="python">Python Lab</button>
+    </nav>
+  </header>
+
+  <section class="econ-view is-active" id="econ-slides">
+    <div class="econ-section-head">
+      <div><span>01</span><h2>Presentaciones</h2></div>
+      <label class="econ-search"><span aria-hidden="true">⌕</span><input id="econ-search" type="search" placeholder="Buscar tema…" aria-label="Buscar presentaciones"></label>
+    </div>
+    <div class="econ-grid" id="econ-grid"></div>
+    <p class="econ-empty" id="econ-empty" hidden>No hay presentaciones que coincidan con la búsqueda.</p>
+  </section>
+
+  <section class="econ-view" id="econ-python">
+    <div class="econ-section-head">
+      <div><span>02</span><h2>Laboratorio de Python</h2></div>
+      <p class="econ-status" id="econ-status"><i></i> Preparando Python…</p>
+    </div>
+    <div class="econ-lab">
+      <aside>
+        <small>EJEMPLOS</small>
+        <div id="econ-examples"></div>
+        <p>El código se ejecuta localmente en tu navegador.</p>
+      </aside>
+      <div class="econ-editor">
+        <div class="econ-editor-bar"><span id="econ-filename">ejemplo.py</span><button id="econ-reset">Restaurar</button></div>
+        <textarea id="econ-code" spellcheck="false" aria-label="Código Python"></textarea>
+        <div class="econ-runbar"><span>Shift + Enter para ejecutar</span><button id="econ-run" disabled>▶ Ejecutar</button></div>
+        <div class="econ-output"><span>RESULTADO</span><pre id="econ-result">Python se está cargando…</pre></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<dialog class="econ-modal" id="econ-modal">
+  <header><div><small id="econ-modal-meta"></small><h2 id="econ-modal-title"></h2></div><button id="econ-close" aria-label="Cerrar">×</button></header>
+  <div id="econ-modal-body"></div>
+</dialog>
+
+<script src="{{ base_path }}/assets/js/econometria-content.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+<script src="{{ base_path }}/assets/js/econometria.js"></script>
