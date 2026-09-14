@@ -5,7 +5,7 @@ permalink: /clases/
 author_profile: true
 ---
 
-<link rel="stylesheet" href="{{ base_path }}/assets/css/econometria.css">
+<link rel="stylesheet" href="{{ base_path }}/assets/css/econometria.css?v={{ site.time | date: '%s' }}">
 
 <div class="econ-app" id="econometria-app">
   <header class="econ-hero">
@@ -54,6 +54,6 @@ author_profile: true
   <div id="econ-modal-body"></div>
 </dialog>
 
-<script src="{{ base_path }}/assets/js/econometria-content.js"></script>
+<script src="{{ base_path }}/assets/js/econometria-content.js?v={{ site.time | date: '%s' }}"></script>
 <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
-<script src="{{ base_path }}/assets/js/econometria.js"></script>
+<script src="{{ base_path }}/assets/js/econometria.js?v={{ site.time | date: '%s' }}"></script>
