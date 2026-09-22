@@ -36,6 +36,8 @@
 .econ-runbar { border-top:1px solid #29323b;border-bottom:0; }.econ-runbar button { border:0;border-radius:7px;background:var(--lime);color:#10151a;padding:.6rem .9rem;font-weight:800;cursor:pointer; }.econ-runbar button:disabled{opacity:.45;cursor:wait}
 .econ-output { background:#0b1015;border-top:1px solid #29323b;padding:.8rem 1rem 1rem;min-height:8rem; }.econ-output > span{color:#6d7782;font:600 .62rem monospace;letter-spacing:.1em}.econ-output pre{color:#baf36d;font:400 .72rem/1.55 monospace;white-space:pre-wrap;margin:.65rem 0 0;}
 .econ-figures { display:grid;gap:1rem;margin-top:1rem; }
+.econ-editor { min-width:0; }
+.econ-lab-guide { color:#b8c9d8;font-size:.75rem;line-height:1.6;padding:.8rem 1rem;margin:0;background:#202a35; }
 .econ-figures:empty { display:none; }
 .econ-figures img { display:block;width:100%;height:auto;background:white;border:1px solid #29323b;border-radius:8px; }
 .econ-modal { width:min(62rem,calc(100% - 2rem));height:min(43rem,calc(100% - 2rem));border:0;border-radius:13px;padding:0;box-shadow:0 30px 90px rgba(0,0,0,.35); }.econ-modal::backdrop{background:rgba(10,15,20,.72);backdrop-filter:blur(4px)}.econ-modal > header{height:4.5rem;padding:.7rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #dce1e5}.econ-modal header small{color:#66717b;font:600 .62rem monospace;text-transform:uppercase}.econ-modal header h2{font-size:1.1rem;margin:.15rem 0 0}.econ-modal header button{width:2.2rem;height:2.2rem;border:0;border-radius:50%;font-size:1.5rem;cursor:pointer}.econ-modal-body,#econ-modal-body{height:calc(100% - 4.5rem)}#econ-modal-body iframe{width:100%;height:100%;border:0}

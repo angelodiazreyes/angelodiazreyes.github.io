@@ -92,6 +92,25 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Laboratorios de la Clase 1 de Inferencia Causal
+
+Los diez laboratorios de revisión MCO se editan en `assets/js/inferencia-clase1.js`.
+Cada bloque contiene `title`, `description` (instrucciones y diapositivas) y `code`.
+El código usa `String.raw` para conservar las barras de Python, por ejemplo `\n`.
+Los ejemplos con datos reales llevan `dataset: "wage1"`: el ejecutor coloca la copia
+de `assets/data/wage1.csv` en Python antes de ejecutar. Los demás son independientes.
+
+El PDF está en `files/clases/inferencia-causal/01-revision-mco.pdf`.
+Para una segunda clase, sube `02-nombre-del-tema.pdf` a la misma carpeta.
+
+En la página, cambia los valores que siguen a `# CAMBIA`, o edita directamente X e y,
+y pulsa Ejecutar. Las matrices se imprimen en RESULTADO y las figuras aparecen debajo.
+Las ediciones en el navegador son temporales; para publicarlas, cambia el archivo en GitHub.
+Restaurar recupera el ejemplo publicado. Todos los datos salariales son descriptivos;
+las simulaciones especifican sus propios efectos verdaderos y supuestos.
+
+### Otros ejemplos
+
 Dentro de `ECON_PYTHON_EXAMPLES`, copia un ejemplo y cambia sus campos. El campo `course` determina en qué curso aparecerá:
 
 ```js

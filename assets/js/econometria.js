@@ -13,6 +13,7 @@
   let pyodide;
   let currentCourse = ECON_COURSES[0].id;
   let currentExample;
+  let running = false;
 
   const pdfColors = ["lime", "blue", "orange"];
   (window.ECON_PDF_FILES || []).forEach((file, index) => {
@@ -40,6 +41,7 @@
     </button>`).join("");
 
   function selectCourse(courseId) {
+    if (running) return;
     currentCourse = courseId;
     const course = ECON_COURSES.find((item) => item.id === courseId);
     document.querySelectorAll(".econ-course").forEach((button) => button.classList.toggle("is-active", button.dataset.course === courseId));
@@ -104,8 +106,10 @@
     if (examples.length) selectExample(examples[0]);
   }
   function selectExample(example) {
+    if (running) return;
     currentExample = example;
     code.value = example.code;
+    document.querySelector("#econ-lab-guide").textContent = (example.description || "") + " Cambia el código y presiona Ejecutar. Cambios temporales: Restaurar recupera el ejemplo.";
     figures.replaceChildren();
     result.textContent = "Listo. Presiona Ejecutar para ver el resultado.";
     document.querySelector("#econ-filename").textContent = example.filename;
@@ -126,21 +130,31 @@
   }
 
   async function runPython() {
-    if (!pyodide) return;
+    if (!pyodide || running) return;
+    running = true;
+    const source = code.value;
+    code.readOnly = true;
     run.disabled = true;
     run.textContent = "Ejecutando…";
     let text = "";
     pyodide.setStdout({ batched: (line) => { text += `${line}\n`; } });
     pyodide.setStderr({ batched: (line) => { text += `${line}\n`; } });
     try {
-      await pyodide.loadPackagesFromImports(code.value);
+      figures.replaceChildren();
+      result.textContent = "Cargando librerías y ejecutando…";
+      if (currentExample.dataset === "wage1") {
+        const response = await fetch(window.ECON_WAGE_URL);
+        if (!response.ok) throw new Error("No se pudieron cargar los datos wage1. Revisa la conexión y vuelve a ejecutar.");
+        pyodide.FS.writeFile("wage1.csv", await response.text());
+      }
+      await pyodide.loadPackagesFromImports(source);
       await pyodide.runPythonAsync(`
 import sys
 if "matplotlib.pyplot" in sys.modules:
     import matplotlib.pyplot as plt
     plt.close("all")
 `);
-      const value = await pyodide.runPythonAsync(code.value);
+      const value = await pyodide.runPythonAsync(source);
       result.textContent = text || (value === undefined ? "✓ Código ejecutado sin salida." : String(value));
       const imageProxy = await pyodide.runPythonAsync(`
 import io
@@ -172,6 +186,8 @@ _econ_images
       result.textContent = error.message;
       figures.replaceChildren();
     } finally {
+      running = false;
+      code.readOnly = false;
       run.disabled = false;
       run.textContent = "▶ Ejecutar";
     }
