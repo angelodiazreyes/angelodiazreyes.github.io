@@ -241,7 +241,7 @@ ax.legend();fig.tight_layout()`
   },
   {
     id: "ic-colinealidad", title: "08 · Colinealidad y precisión",
-    description: "Diapositivas 51–55 y 59–61. Conclusión: agregar una variable irrelevante no sesga el coeficiente de x, pero puede hacerlo mucho menos preciso si está correlacionada con x.",
+    description: "Diapositivas 51–55 y 59–61. Un control irrelevante correlacionado con x mantiene la insesgadez pero reduce precisión. Con rho=1 no se pueden separar los coeficientes.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
@@ -263,8 +263,6 @@ for rho in rhos:
         continue
     dispersiones.append(estimaciones); etiquetas.append(str(rho))
     print(f"rho={rho}: media={np.mean(estimaciones):.3f}, SD={np.std(estimaciones,ddof=1):.3f}")
-print("\nConclusión: agregar una variable irrelevante no sesga el coeficiente de x,")
-print("pero puede hacerlo mucho menos preciso si está correlacionada con x.")
 if dispersiones:
     fig,ax=plt.subplots(figsize=(8,4.5))
     ax.boxplot(dispersiones,showfliers=False)
