@@ -6,15 +6,15 @@ for (let i = ECON_PYTHON_EXAMPLES.length - 1; i >= 0; i--) {
 }
 const IC_CLASS1 = [
   {
-    id: "ic-media", title: "01 · Media condicional y LEI", dataset: "wage1",
-    description: "Diapositivas 8–18. Cambia grupo por female o exper. Los promedios de grupo se ponderan por su tamaño; no son efectos causales.",
+    id: "ic-media", title: "01 Clase 1· Media condicional y LEI", dataset: "wage1",
+    description: "Diapositivas 8–18. Puede cambiar grupo por female o exper. Los promedios de grupo se ponderan por su tamaño; no son efectos causales.",
     code: String.raw`import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# CAMBIA: educ (educación), female (indicador), exper (experiencia)
+# Opciones: educ (educación), female (indicador), exper (experiencia)
 grupo = "educ"
-variable = "wage"  # También puedes usar lwage: logaritmo del salario
+variable = "wage"  
 d = pd.read_csv("wage1.csv")[[grupo, variable]].dropna()
 tabla = d.groupby(grupo)[variable].agg(["mean", "count"])
 tabla["peso"] = tabla["count"] / len(d)
@@ -32,13 +32,13 @@ ax.set(xlabel=grupo, ylabel=variable, title="Estimación de E[Y|X] por grupos")
 ax.legend(); fig.tight_layout()`
   },
   {
-    id: "ic-simple", title: "02 · Dispersión y recta MCO", dataset: "wage1",
-    description: "Diapositivas 21–40. Cambia x_nombre o y_nombre y compara la recta MCO con una recta propuesta. SRC mide la suma de residuos al cuadrado.",
+    id: "ic-simple", title: "02 Clase 1· Dispersión y recta MCO", dataset: "wage1",
+    description: "Diapositivas 21–40. Cambia x_nombre o y_nombre y compara la recta MCO con una recta propuesta. Por ejemplo por exper, female. SRC mide la suma de residuos al cuadrado.",
     code: String.raw`import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# CAMBIA estos parámetros y vuelve a ejecutar
+# Opción: Puede cambiar estos parámetros y vuelve a ejecutar
 x_nombre, y_nombre = "educ", "wage"
 b0_propuesto, b1_propuesto = -1.0, 0.6
 d = pd.read_csv("wage1.csv")[[x_nombre, y_nombre]].dropna()
@@ -67,13 +67,13 @@ ax.set(xlabel=x_nombre, ylabel=y_nombre, title="MCO minimiza la SRC")
 ax.legend(); fig.tight_layout()`
   },
   {
-    id: "ic-matriz-simple", title: "03 · Beta paso a paso: matrices",
-    description: "Diapositivas 28, 39 y 47–49. Modifica x e y. Verás X, X′X, su inversa, X′y y beta_hat; la pendiente coincide con covarianza/varianza.",
+    id: "ic-matriz-simple", title: "03 Clase 1· Beta paso a paso: matrices",
+    description: "Diapositivas 28, 39 y 47–49. Puede modificar los valores de x e y. Se construye X, X′X, su inversa, X′y y beta_hat; la pendiente coincide con covarianza/varianza.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 np.set_printoptions(precision=3, suppress=True)
 
-# CAMBIA los valores; conserva igual cantidad de x e y
+# Puede cambiar los valores; Importante: conserva igual cantidad de x e y
 x = np.array([1, 2, 3, 4, 5], dtype=float)
 y = np.array([2, 4, 4, 6, 7], dtype=float)
 if x.ndim != 1 or y.shape != x.shape:
@@ -82,7 +82,7 @@ X = np.column_stack([np.ones(len(x)), x])
 if np.linalg.matrix_rank(X) < 2:
     raise ValueError("X no tiene rango completo: prueba valores distintos de x.")
 XtX, Xty = X.T @ X, X.T @ y
-inversa = np.linalg.inv(XtX)  # Mostrada con propósito pedagógico
+inversa = np.linalg.inv(XtX)  # Mostrar para su conocimiento
 beta = np.linalg.solve(XtX, Xty)
 referencia = np.linalg.lstsq(X, y, rcond=None)[0]
 pendiente = ((x-x.mean()) @ (y-y.mean())) / np.sum((x-x.mean())**2)
@@ -102,7 +102,7 @@ ax.set(xlabel="x", ylabel="y", title="Cambia los vectores y observa la recta")
 ax.legend(); fig.tight_layout()`
   },
   {
-    id: "ic-matriz-multiple", title: "04 · Matriz múltiple editable",
+    id: "ic-matriz-multiple", title: "04 Clase 1· Matriz múltiple editable",
     description: "Diapositivas 42–54. Cambia X e y; cada fila es una observación y la primera columna es el intercepto. Observa también los residuos y sus condiciones de ortogonalidad.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
@@ -141,15 +141,15 @@ axes[1].set(xlabel="Observación", ylabel="Residuo", title="Lo que el modelo no 
 fig.tight_layout()`
   },
   {
-    id: "ic-multiple-real", title: "05 · Múltiple y efecto parcial", dataset: "wage1",
-    description: "Diapositivas 42–49. Regresión salarial con controles y demostración de Frisch–Waugh–Lovell. Cambia la lista de controles; se muestran las primeras filas de X y los productos completos.",
+    id: "ic-multiple-real", title: "05 Clase 1· Múltiple y efecto parcial", dataset: "wage1",
+    description: "Diapositivas 42–49. Regresión salarial con controles y demostración de Frisch–Waugh–Lovell. Puede cambiar la lista de controles; se muestran las primeras filas de X y los productos completos.",
     code: String.raw`import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 np.set_printoptions(precision=3, suppress=True)
 
 objetivo = "educ"
-controles = ["exper", "tenure"]  # CAMBIA: añade female, married, etc.
+controles = ["exper", "tenure"]  # Opción: añade female, married, etc.
 dependiente = "lwage"
 if objetivo in controles or len(set(controles)) != len(controles) or dependiente in [objetivo]+controles:
     raise ValueError("Usa variables distintas, sin repetir controles ni incluir y.")
@@ -179,12 +179,12 @@ ax.set(xlabel="x sin la parte explicada por controles",ylabel="y sin la parte ex
 fig.tight_layout()`
   },
   {
-    id: "ic-cef", title: "06 · CEF no lineal y predicción",
-    description: "Diapositivas 15–22 y 44. Cambia curvatura: una regresión puede ser lineal en parámetros y curva en x. Compara errores de predicción en una muestra independiente.",
+    id: "ic-cef", title: "06 Clase 1· CEF no lineal y predicción",
+    description: "Diapositivas 15–22 y 44. Usted puede cambia curvatura: una regresión puede ser lineal en parámetros y curva en x. Compara errores de predicción en una muestra independiente.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
-n, curvatura, sigma = 300, 1.0, 2.0  # CAMBIA
+n, curvatura, sigma = 300, 1.0, 2.0  # Esto lo puede cambiar
 x=rng.uniform(-3,3,n)
 cef=lambda z: 1+2*z+curvatura*z**2
 y=cef(x)+rng.normal(0,sigma,n)
@@ -209,13 +209,13 @@ ax.set(xlabel="x",ylabel="y",title="CEF y aproximación lineal")
 ax.legend();fig.tight_layout()`
   },
   {
-    id: "ic-sesgo", title: "07 · Sesgo por variable omitida",
+    id: "ic-sesgo", title: "07 Clase 1· Sesgo por variable omitida",
     description: "Diapositivas 53–57 y 78–79. Cambia rho y gamma: el sesgo depende de la correlación con la variable omitida y de su efecto. Cada histograma reúne muchas muestras.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
-n, B = 300, 600
-beta1, gamma, rho = 2.0, 1.5, 0.7  # CAMBIA rho entre -0.99 y 0.99
+n, B = 300, 600  # n obs, B simulaciones
+beta1, gamma, rho = 2.0, 1.5, 0.7  # Puede cambiar rho entre -0.99 y 0.99
 if not -1 < rho < 1 or n < 5 or B < 2:
     raise ValueError("Se requiere -1<rho<1, n>=5 y B>=2.")
 omitida, completa = [], []
@@ -223,8 +223,8 @@ for _ in range(B):
     x=rng.normal(size=n)
     z=rho*x+np.sqrt(1-rho**2)*rng.normal(size=n)
     y=1+beta1*x+gamma*z+rng.normal(size=n)
-    corto=np.linalg.lstsq(np.column_stack([np.ones(n),x]),y,rcond=None)[0]
-    largo=np.linalg.lstsq(np.column_stack([np.ones(n),x,z]),y,rcond=None)[0]
+    corto=np.linalg.lstsq(np.column_stack([np.ones(n),x]),y,rcond=None)[0]  # estima y= c + b x+ u
+    largo=np.linalg.lstsq(np.column_stack([np.ones(n),x,z]),y,rcond=None)[0] # estima y= c + b x+ t z + u
     omitida.append(corto[1]); completa.append(largo[1])
 sesgo=gamma*rho  # Var(x)=Var(z)=1 en esta población
 print(f"Verdad beta1={beta1}; sesgo teórico del modelo corto={sesgo:.3f}")
@@ -240,13 +240,13 @@ ax.set(xlabel="beta1_hat",ylabel="Frecuencia",title="Más datos no eliminan el s
 ax.legend();fig.tight_layout()`
   },
   {
-    id: "ic-colinealidad", title: "08 · Colinealidad y precisión",
+    id: "ic-colinealidad", title: "08 Clase 1· Colinealidad y precisión",
     description: "Diapositivas 51–55 y 59–61. Un control irrelevante correlacionado con x mantiene la insesgadez pero reduce precisión. Con rho=1 no se pueden separar los coeficientes.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
 n, B, beta1 = 150, 500, 2.0
-rhos = [0.0, 0.5, 0.9, 0.99]  # CAMBIA; 1 demuestra colinealidad perfecta
+rhos = [0.0, 0.5, 0.9, 0.99]  # Opiones; 1 demuestra colinealidad perfecta. Se está comparando varios niveles de colinealidad
 dispersiones, etiquetas = [], []
 for rho in rhos:
     if abs(rho)>1: raise ValueError("rho debe estar entre -1 y 1.")
@@ -257,12 +257,14 @@ for rho in rhos:
         X=np.column_stack([np.ones(n),x,z])
         if np.linalg.matrix_rank(X)<3: break
         y=1+beta1*x+rng.normal(size=n)  # Efecto verdadero de z = 0
-        estimaciones.append(np.linalg.lstsq(X,y,rcond=None)[0][1])
+        estimaciones.append(np.linalg.lstsq(X,y,rcond=None)[0][1])  # acá se está usando x y z
     if not estimaciones:
         print(f"rho={rho}: X sin rango completo; coeficientes no únicos.")
         continue
     dispersiones.append(estimaciones); etiquetas.append(str(rho))
     print(f"rho={rho}: media={np.mean(estimaciones):.3f}, SD={np.std(estimaciones,ddof=1):.3f}")
+    print("\nConclusión: agregar una variable irrelevante no sesga el coeficiente de x,")
+    print("pero puede hacerlo mucho menos preciso si está correlacionada con x.")
 if dispersiones:
     fig,ax=plt.subplots(figsize=(8,4.5))
     ax.boxplot(dispersiones,showfliers=False)
@@ -272,7 +274,7 @@ if dispersiones:
     ax.legend();fig.tight_layout()`
   },
   {
-    id: "ic-hetero", title: "09 · Heterocedasticidad y EE",
+    id: "ic-hetero", title: "09 Clase 1· Heterocedasticidad y EE",
     description: "Diapositivas 58–66. Cambia hetero a cero para homocedasticidad. Compara errores estándar clásicos con robustos HC1; robustecer los EE no cambia los coeficientes ni resuelve endogeneidad.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
@@ -303,13 +305,13 @@ axes[1].set(xticks=[0,1],xticklabels=["Clásico","HC1"],ylabel="Pendiente e IC 9
 axes[1].legend();fig.tight_layout()`
   },
   {
-    id: "ic-asintotica", title: "10 · Consistencia y normalidad",
+    id: "ic-asintotica", title: "10 Clase 1· Consistencia y normalidad",
     description: "Diapositivas 68–79. Cambia delta: con delta=0 hay exogeneidad; si delta≠0, el estimador se concentra en un valor incorrecto. Se usan errores no normales y muchas muestras.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
-beta1, delta, B, epsilon = 2.0, 0.0, 1000, 0.15
-tamanos = [30, 100, 500, 1500]  # CAMBIA; evita muestras enormes en el navegador
+beta1, delta, B, epsilon = 2.0, 0.0, 1000, 0.15 # coeficiente, relación entre x y el error, simulaciones y Margen de error usado para medir qué tan frecuentemente \(\hat\beta_1\) está lejos del valor verdadero.
+tamanos = [30, 100, 500, 1500]  # Cambias el tamaño de cada muestra simulada; evita muestras enormes en el navegador
 if B<2 or epsilon<=0 or min(tamanos)<3: raise ValueError("Usa B>=2, epsilon>0, n>=3.")
 fig,axes=plt.subplots(1,2,figsize=(10,4))
 for n in tamanos:
@@ -335,7 +337,22 @@ xx=np.linspace(-4,4,250)
 axes[1].plot(xx,np.exp(-xx**2/2)/np.sqrt(2*np.pi),color="#e85d3f",label="N(0,1)")
 axes[1].set(xlabel="sqrt(n) × (beta_hat - límite)",ylabel="Densidad",title="Normalidad asintótica, Var(x)=Var(ruido)=1")
 for ax in axes: ax.legend(fontsize=8)
-fig.tight_layout()`
+fig.tight_layout()
+print("\nConclusión:")
+
+if delta == 0:
+    print(
+        "Al aumentar el tamaño muestral, beta_hat se concentra "
+        f"alrededor del efecto verdadero beta1 = {beta1}. "
+        "MCO es consistente porque x no está correlacionada con el error."
+    )
+else:
+    print(
+        "Al aumentar el tamaño muestral, beta_hat se vuelve más preciso, "
+        f"pero se concentra alrededor de {limite:.3f}, no del efecto verdadero "
+        f"{beta1}. Más datos reducen la variabilidad, pero no corrigen "
+        "el sesgo causado por la correlación entre x y el error."
+    )`
   }
 ];
 IC_CLASS1.forEach((example) => ECON_PYTHON_EXAMPLES.push({
