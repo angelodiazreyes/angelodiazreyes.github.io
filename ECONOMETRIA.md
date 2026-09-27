@@ -92,6 +92,18 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Clase 1 de Econometría Aplicada I: variables aleatorias discretas
+
+Edita `assets/js/aplicada-clase1.js` para los ocho ejemplos de esta clase.
+Cada bloque tiene título, instrucciones (`description`) y código Python (`code: String.raw`).
+Los parámetros al inicio de cada ejercicio son editables, y los resultados incluyen gráficos
+y una conclusión. Los datos de empleo, ventas e ingresos son hipotéticos o simulados.
+La extensión binomial está identificada como tal.
+
+PDF actual: `files/clases/econometria-aplicada-1/01-variables-aleatorias-discretas.pdf`.
+Los antiguos ejercicios de muestreo siguen en el historial y en el archivo base,
+pero esta clase carga sus propios ejemplos en lugar de ellos.
+
 ### Laboratorios de la Clase 1 de Inferencia Causal
 
 Los diez laboratorios de revisión MCO se editan en `assets/js/inferencia-clase1.js`.
