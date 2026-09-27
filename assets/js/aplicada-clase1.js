@@ -13,7 +13,7 @@ p, n = 0.3, 1000  # CAMBIA: probabilidad de oferta y número de solicitudes
 if not 0 <= p <= 1 or n < 1: raise ValueError("Usa 0<=p<=1 y n>=1.")
 x = rng.binomial(1, p, size=n)
 teoria = np.array([1-p, p])
-observada = np.bincount(x, minlength=2)/n
+observada = np.bincount(x.astype(np.intp), minlength=2)/n
 print("Primeros 30 resultados:", x[:30])
 print("Probabilidades teóricas [0,1]:", teoria)
 print("Frecuencias relativas [0,1]:", observada)
@@ -192,7 +192,7 @@ if not 0<=p<=1 or not 1<=m<=100 or B<1:
 ofertas=rng.binomial(1,p,size=(B,m)).sum(axis=1)
 k=np.arange(m+1)
 pmf=np.array([comb(m,int(j))*p**j*(1-p)**(m-j) for j in k])
-frecuencia=np.bincount(ofertas,minlength=m+1)/B
+frecuencia=np.bincount(ofertas.astype(np.intp),minlength=m+1)/B
 print(f"E[ofertas]=m*p={m*p:.3f}; media simulada={ofertas.mean():.3f}")
 print(f"Var(ofertas)=m*p*(1-p)={m*p*(1-p):.3f}")
 print(f"P(ofertas>={umbral})={pmf[k>=umbral].sum():.4f}")
