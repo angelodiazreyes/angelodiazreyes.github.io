@@ -6,7 +6,7 @@ const VAC_LABS = [
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
-a,b,c,d,n=0.0,1/3,0.1,0.2,10000  # CAMBIA
+a,b,c,d,n=0.0,1/3,0.1,0.2,10000  # Puede cambiar
 if not a<b or not c<d or n<1: raise ValueError("Usa a<b, c<d y n>=1.")
 F=lambda x: np.clip((np.asarray(x)-a)/(b-a),0,1)
 prob=float(F(d)-F(c))
@@ -31,8 +31,8 @@ print("Conclusión: una barra alta no significa una probabilidad mayor que uno. 
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
-a,b,punto,n=0.0,10.0,5.0,20000
-anchos=np.array([2.0,1.0,.5,.1,.01])  # CAMBIA: precisión de medición
+a,b,punto,n=0.0,10.0,5.0,20000 # Tiempo de espera entre [0,10]; punto especifico que queremos estudiar; numero de tiempos de espera simulados
+anchos=np.array([2.0,1.0,.5,.1,.01])  # Puede modificar valores: precisión de medición
 if not a<b or n<1 or np.any(anchos<=0): raise ValueError("Usa a<b, n>=1 y anchos positivos.")
 t=rng.uniform(a,b,n)
 teoria=np.maximum(0,np.minimum(b,punto+anchos/2)-np.maximum(a,punto-anchos/2))/(b-a)
@@ -45,7 +45,7 @@ j=np.arange(len(anchos))
 ax.bar(j-.18,teoria,.36,label="Modelo continuo");ax.bar(j+.18,sim,.36,label="Simulación")
 ax.set(xticks=j,xticklabels=anchos,xlabel="Ancho del intervalo alrededor del punto (min)",ylabel="Probabilidad",title="Más precisión: menos valores caben en el intervalo")
 ax.legend();fig.tight_layout()
-print("Conclusión: registrar 5 minutos al redondear al minuto significa esperar entre 4.5 y 5.5, no exactamente 5. Cuando el intervalo se estrecha, su probabilidad disminuye; un punto aislado no tiene ancho ni área.")`
+print("Conclusión: registrar 5 minutos al redondear al minuto significa esperar entre 4.5 y 5.5, no exactamente 5. Cuando el intervalo se estrecha, su probabilidad disminuye; un punto aislado no tiene ancho ni área. Va aumentando la probabilidad si es que aumenta el intervalo")`
   },
   {
     id: "vac-cuantiles", title: "03 Clase 2 · Cuantiles: elegir el umbral",
@@ -54,7 +54,7 @@ print("Conclusión: registrar 5 minutos al redondear al minuto significa esperar
 import matplotlib.pyplot as plt
 from statistics import NormalDist
 rng=np.random.default_rng(123)
-a,b,mu,sigma,p,n=20.0,80.0,100.0,15.0,.95,10000
+a,b,mu,sigma,p,n=20.0,80.0,100.0,15.0,.95,10000 # valores Distr. Uniforme y Distr. Normal; percentil 95; observaciones
 if not a<b or sigma<=0 or not 0<p<1 or n<1: raise ValueError("Usa a<b, sigma>0, 0<p<1, n>=1.")
 normal=NormalDist(mu,sigma)
 qu=a+p*(b-a);qn=normal.inv_cdf(p)
@@ -67,7 +67,7 @@ for eje,grid,F,q,titulo in [(ax[0],np.linspace(a-5,b+5,500),lambda x: np.clip((x
     eje.plot(grid,F(grid));eje.axhline(p,color="C1",ls="--");eje.axvline(q,color="C1",ls="--")
     eje.scatter([q],[p],color="C1");eje.set(xlabel="Valor (unidades del modelo)",ylabel="Probabilidad acumulada",title=f"{titulo}: cuantil={q:.2f}")
 fig.tight_layout()
-print("Conclusión: la CDF pregunta cuánto queda por debajo de un valor; el cuantil hace la pregunta al revés: qué valor necesito para cubrir cierta proporción. El percentil 95 es un valor, no una probabilidad ni el máximo.")`
+print("Conclusión: la CDF pregunta cuánto queda por debajo de un valor; el cuantil hace la pregunta al revés: qué valor necesito para cubrir cierta proporción. El percentil 95 es un valor, no una probabilidad ni el máximo. El percentil 95 no significa “95% de probabilidad” por sí solo. Es un valor de la variable —77 o 124,67 en estos ejemplos— que deja 95% de los casos a su izquierda. Tampoco es el valor máximo: aún queda 5% de los resultados por encima.")`
   },
   {
     id: "vac-costo", title: "04 Clase 2 · Costo de esperar: centro y dispersión",
@@ -91,7 +91,7 @@ fig.tight_layout()
 print("Conclusión: subir el costo fijo mueve todos los costos por igual, sin separarlos más entre sí. Duplicar la tarifa duplica las distancias a la media: la desviación estándar se duplica y la varianza se cuadruplica. La esperanza es el centro, no el costo que cada persona pagará.")`
   },
   {
-    id: "vac-nolineal", title: "05 Clase 2 · El costo del promedio no es el costo promedio",
+    id: "vac-nolineal", title: "05 Clase 2 · El costo del promedio no es el costo promedio de las esperas",
     description: "Slides 31–32. Extensión aplicada: una penalización cuadrática por demora. Mantén la misma espera media y aumenta su dispersión para ver por qué E[T²] no es E[T]².",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
