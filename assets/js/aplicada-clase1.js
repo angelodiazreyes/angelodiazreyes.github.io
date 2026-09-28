@@ -46,7 +46,7 @@ axes[1].scatter([0,1],[0,1-p],facecolors="white",edgecolors="C0",zorder=3)
 axes[1].scatter([0,1],[1-p,1],color="C0",zorder=4)
 axes[1].set(xlim=(-.5,1.5),ylim=(-.05,1.05),xlabel="x",ylabel="P(X≤x)",title="Acumulada (CDF)")
 fig.tight_layout()
-print("Conclusión: la PMF asigna masa a cada resultado; la CDF suma las masas hasta el umbral y es continua por la derecha.")`
+print("Conclusión: la PMF pregunta qué probabilidad tiene cada resultado; la CDF pregunta cuánto hemos acumulado hasta un valor. Al pasar por 0 o 1, la acumulada salta porque incorpora de una vez la probabilidad de ese resultado.")`
   },
   {
     id: "vad-dados", title: "03 · Dos dados: eventos y probabilidades",
@@ -95,7 +95,7 @@ axes[0].set(xlabel="X: cara del dado",ylabel="Probabilidad",title="Distribución
 axes[1].bar([0,1],[1-p,p],color=["C0","C1"])
 axes[1].set(xticks=[0,1],xlabel="Y: supera el umbral",ylabel="Probabilidad",title="Distribución transformada")
 fig.tight_layout()
-print("Conclusión: la transformación puede cambiar la distribución; se suman las probabilidades de todos los valores que se convierten en el mismo resultado.")`
+print("Conclusión: al convertir caras del dado en sí o no, juntamos varios resultados en una sola categoría. La probabilidad de sí es la suma de las probabilidades de todas las caras que cumplen la condición; mover el umbral cambia cuáles entran.")`
   },
   {
     id: "vad-beneficio", title: "05 · Beneficio esperado de una venta",
@@ -205,6 +205,7 @@ ax.legend();fig.tight_layout()
 print("Conclusión: la suma cuenta éxitos y toma valores de 0 a m. La fórmula binomial requiere solicitudes independientes y una misma probabilidad p.")`
   }
 ];
-VAD_LABS.forEach(example => ECON_PYTHON_EXAMPLES.push({
-  ...example, course: "econometria-aplicada-1", filename: example.id.replaceAll("-", "_") + ".py"
-}));
+VAD_LABS.forEach(example => {
+  const title = example.title.replace(" · ", " Clase 1 · ").replace("solicitudes de empleo", "Solicitudes de empleo");
+  ECON_PYTHON_EXAMPLES.push({ ...example, title, course: "econometria-aplicada-1", filename: title });
+});

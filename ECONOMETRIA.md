@@ -92,6 +92,14 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Clase 2 de Econometría Aplicada I: variables aleatorias continuas
+
+Edita `assets/js/aplicada-clase2.js` para las doce simulaciones de esta clase.
+Los títulos y encabezados del editor identifican número de ejercicio y clase:
+`01 Clase 2 · Densidad no es probabilidad`. La numeración se reinicia en cada clase.
+Los ejercicios contienen parámetros editables, gráficos y conclusiones intuitivas.
+El PDF se encuentra en `files/clases/econometria-aplicada-1/02-variables-aleatorias-continuas.pdf`.
+
 ### Clase 1 de Econometría Aplicada I: variables aleatorias discretas
 
 Edita `assets/js/aplicada-clase1.js` para los ocho ejemplos de esta clase.
