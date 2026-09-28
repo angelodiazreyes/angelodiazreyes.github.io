@@ -32,7 +32,7 @@ print("Intuición: La intuición central es que cada observación individual es 
     description: "Páginas 48–58. Cambia p y el umbral t. Compara P(X=t) con P(X≤t); la acumulada incluye la masa situada exactamente en t.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
-p, t = 0.6, 0.0  # CAMBIA: prueba t=-0.1, 0, 0.5, 1
+p, t = 0.6, 0.0  # Usted puede modificar: prueba t=-0.1, 0, 0.5, 1
 if not 0<=p<=1: raise ValueError("p debe estar entre 0 y 1.")
 F=lambda s: np.where(np.asarray(s)<0,0,np.where(np.asarray(s)<1,1-p,1))
 masa = 1-p if t==0 else p if t==1 else 0
@@ -54,7 +54,7 @@ print("Conclusión: la PMF pregunta qué probabilidad tiene cada resultado; la C
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
-n, umbral = 5000, 8  # CAMBIA
+n, umbral = 5000, 8  # Usted puede cambiar / El umbral es cual es la probabilidad P(X>=umbral)
 if n<1: raise ValueError("n debe ser positivo.")
 caras=np.arange(1,7)
 matriz=caras[:,None]+caras[None,:]
@@ -80,8 +80,9 @@ print("Conclusión: los 36 pares son equiprobables, pero una suma es más probab
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 valores=np.arange(1,7)
-probs=np.array([1,1,1,1,1,1],dtype=float)/6  # CAMBIA; deben sumar 1
-umbral=4
+probs=np.array([1,1,1,1,1,1],dtype=float)/6  # Asigna probabilidad \(1/6\) a cada cara: es un dado justo. Puede cambiar las probabilidades. Ojo que deben sumar 1
+#probs = np.array([0.10, 0.10, 0.10, 0.20, 0.20, 0.30])
+umbral=4 # Y=1{X>=4}
 if probs.shape!=(6,) or np.any(probs<0) or not np.isclose(probs.sum(),1):
     raise ValueError("Necesitas seis probabilidades no negativas que sumen 1.")
 y=(valores>=umbral).astype(int)
