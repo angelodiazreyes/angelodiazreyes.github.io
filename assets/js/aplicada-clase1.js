@@ -8,12 +8,12 @@ const VAD_LABS = [
     description: "Páginas 56–58. X=1 si una solicitud obtiene una oferta y X=0 si no. Cambia p y n; son datos simulados con probabilidad constante e independencia entre solicitudes.",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
-rng = np.random.default_rng(123)
-p, n = 0.3, 1000  # CAMBIA: probabilidad de oferta y número de solicitudes
+rng = np.random.default_rng(123) # Crea número aleatorio
+p, n = 0.3, 1000  # Usted puede modificar: probabilidad de oferta y número de solicitudes
 if not 0 <= p <= 1 or n < 1: raise ValueError("Usa 0<=p<=1 y n>=1.")
 x = rng.binomial(1, p, size=n)
 teoria = np.array([1-p, p])
-observada = np.bincount(x.astype(np.intp), minlength=2)/n
+observada = np.bincount(x.astype(np.intp), minlength=2)/n   # Cuenta cuántos ceros y unos aparecieron realmente en la simulación, y divide por n para obtener frecuencias relativas.
 print("Primeros 30 resultados:", x[:30])
 print("Probabilidades teóricas [0,1]:", teoria)
 print("Frecuencias relativas [0,1]:", observada)
@@ -25,7 +25,7 @@ ax.bar(np.arange(2)+.18,observada,width=.36,label="Simulación")
 ax.set(xticks=[0,1],xticklabels=["Sin oferta (0)","Con oferta (1)"],
        ylabel="Probabilidad / frecuencia relativa",ylim=(0,1),title="PMF Bernoulli")
 ax.legend();fig.tight_layout()
-print("Conclusión: una variable Bernoulli codifica un resultado binario. Su media es la probabilidad de éxito; una muestra finita puede diferir de ella.")`
+print("Intuición: La intuición central es que cada observación individual es incierta —una persona recibe o no recibe oferta—, pero cuando acumulamos muchas solicitudes, la proporción de ofertas suele acercarse a la probabilidad verdadera \(p\).")`
   },
   {
     id: "vad-cdf", title: "02 · Bernoulli: PMF y CDF",
