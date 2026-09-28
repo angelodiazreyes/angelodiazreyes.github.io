@@ -104,7 +104,7 @@ print("Conclusión: al convertir caras del dado en sí o no, juntamos varios res
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 rng=np.random.default_rng(123)
-p, margen, costo, n = 0.3, 100.0, 20.0, 5000  # Valores monetarios en unidades hipotéticas
+p, margen, costo, n = 0.3, 100.0, 20.0, 5000  # p: probabilidad de compra; margen: margen si hay una compra; costo: costo de contactar al cliente, haya o no compra; n: cantidad de contactos simulados
 if not 0<=p<=1 or n<1: raise ValueError("Usa 0<=p<=1 y n>=1.")
 compra=rng.binomial(1,p,n)
 beneficio=margen*compra-costo
@@ -182,12 +182,12 @@ print("Conclusión: bajo independencia y p constante, la proporción converge a 
   },
   {
     id: "vad-binomial", title: "08 · De Bernoulli al número de ofertas",
-    description: "Extensión: cada solicitud es Bernoulli; la suma de m solicitudes independientes con la misma p es binomial. Cambia m, p y el umbral de ofertas.",
+    description: "Extensión: cada solicitud es Bernoulli; la suma de m solicitudes independientes con la misma p es binomial. Cambia m, p y el umbral de ofertas. No visto en las slides, pero interesante de analizar",
     code: String.raw`import numpy as np
 import matplotlib.pyplot as plt
 from math import comb
 rng=np.random.default_rng(123)
-p, m, B, umbral = 0.3, 10, 5000, 3
+p, m, B, umbral = 0.3, 10, 5000, 3 # p: cada solicitud tiene p% probabilidad; m: cada persona realiza m solicitudes; B simulaciones; umbral 
 if not 0<=p<=1 or not 1<=m<=100 or B<1:
     raise ValueError("Usa 0<=p<=1, 1<=m<=100 y B>=1.")
 ofertas=rng.binomial(1,p,size=(B,m)).sum(axis=1)
