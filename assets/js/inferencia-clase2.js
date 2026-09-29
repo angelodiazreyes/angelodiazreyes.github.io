@@ -40,7 +40,7 @@ const IC_CLASS2 = [
   {
     id:"ic2-omitida", title:"01 Clase 2 · Problema variable omitida",
     description:"Slides 2–8 y 22–26. Educación x y log-salario y hipotéticos. Habilidad h afecta a ambos. Cambia gamma (efecto de habilidad en y) y a (relación de habilidad con x).",
-    code:IC2_IMPORTS+String.raw`n,B,beta,a,gamma,pi=500,600,.10,1.0,.30,1.0
+    code:IC2_IMPORTS+String.raw`n,B,beta,a,gamma,pi=500,600,.10,1.0,.30,1.0  # Puede mover gamma y a (similar a clase 1)
 `+IC2_MC+String.raw`
 z,h,v,e=rng.normal(size=(4,B,n))
 x=12+pi*z+a*h+v
@@ -70,7 +70,7 @@ print("Conclusión: z mueve educación sin mover habilidad. Comparar ese cambio 
   {
     id:"ic2-medicion", title:"03 Clase 2 · Problema error de medición",
     description:"Slides 4 y 40. x_real es una magnitud centrada, medida con ruido independiente: x_observada=x_real+error. Cambia sd_error. La atenuación hacia cero corresponde a este error clásico en una regresión simple.",
-    code:IC2_IMPORTS+String.raw`n,B,beta,sd_error=500,600,2.0,1.5
+    code:IC2_IMPORTS+String.raw`n,B,beta,sd_error=500,600,2.0,0.5
 if sd_error<0: raise ValueError("sd_error debe ser no negativo.")
 `+IC2_MC+String.raw`
 x_real,u,e=rng.normal(size=(3,B,n))
@@ -82,7 +82,7 @@ print("Conclusión: parte de las diferencias que vemos en x son errores de regis
   {
     id:"ic2-medicion-iv", title:"04 Clase 2 · Error de medición: segunda medición como IV",
     description:"Slides 4, 10 y 40. Dos mediciones de la misma x real. La segunda puede instrumentar a la primera si sus errores son independientes entre sí, de x real y del error de y. Cambia rho_errores para romper el supuesto.",
-    code:IC2_IMPORTS+String.raw`n,B,beta,sd_error,rho_errores=500,600,2.0,1.5,0.0
+    code:IC2_IMPORTS+String.raw`n,B,beta,sd_error,rho_errores=500,600,2.0,0.5,0.0
 if sd_error<0 or not -1<=rho_errores<=1: raise ValueError("Usa sd_error>=0 y |rho_errores|<=1.")
 if abs(1+rho_errores*sd_error**2)<1e-8: raise ValueError("El instrumento pierde relevancia: Cov(z,x_obs)=0.")
 `+IC2_MC+String.raw`
