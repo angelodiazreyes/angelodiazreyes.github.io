@@ -92,6 +92,23 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Clase 2 de Inferencia Causal: variables instrumentales
+
+Edita `assets/js/inferencia-clase2.js`. Sus 15 simulaciones se añaden a la Clase 1,
+con nombres como `01 Clase 2 · Problema variable omitida` en lista y editor.
+Cada código visible es independiente, editable y contiene gráficos y una conclusión intuitiva.
+Los datos son hipotéticos. Los ejercicios 01–06 separan problema y solución IV para
+omisión, medición y simultaneidad; 07–15 cubren matrices, Wald, debilidad, invalidez,
+controles, errores estándar, DWH, Sargan y consistencia.
+El PDF está en `files/clases/inferencia-causal/02-variables-instrumentales.pdf`.
+
+Referencia de implementación de 2SLS, covarianzas y contrastes:
+https://bashtage.github.io/linearmodels/iv/mathematical-formula.html
+Se usan residuos estructurales `y-X@beta` para inferencia IV. Sargan es homocedástico;
+DWH se implementa mediante inclusión del residuo y contraste asintótico de un grado.
+La diapositiva 23 del PDF tiene `Corr(z,x)` en el primer denominador: el código usa
+la fórmula correcta `Cov(z,y)/Cov(z,x)`. El PDF original se conserva sin alteraciones.
+
 ### Clase 2 de Econometría Aplicada I: variables aleatorias continuas
 
 Edita `assets/js/aplicada-clase2.js` para las doce simulaciones de esta clase.
