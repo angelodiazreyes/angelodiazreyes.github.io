@@ -92,6 +92,19 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Clase 4 de Econometría Aplicada I: regresión lineal simple
+
+Edita `assets/js/aplicada-clase4.js` para sus 14 simulaciones. Cada título identifica
+el número y clase, por ejemplo `01 Clase 4 · Media condicional: personas y promedios`.
+Los códigos visibles son independientes, editables, e incluyen gráficos y conclusiones.
+La Clase 4 está en `files/clases/econometria-aplicada-1/04.pdf`.
+Se cubren CEF, BLP, cálculo MCO (tabla original slide 50), minimización, residuos,
+R²/SER, precisión, outliers, unidades, logs, dependencia entre observaciones,
+pruebas t, intervalos, significancia económica y propiedades asintóticas.
+Los ejemplos de inferencia t usan SciPy y explicitan normalidad y homocedasticidad.
+Nota: la slide 61 afirma que R² siempre aumenta con n. El ejemplo 06 muestra que
+no ocurre necesariamente al agregar observaciones. El PDF original no se modifica.
+
 ### Clase 2 de Inferencia Causal: variables instrumentales
 
 Edita `assets/js/inferencia-clase2.js`. Sus 15 simulaciones se añaden a la Clase 1,
