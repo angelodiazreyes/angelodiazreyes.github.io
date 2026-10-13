@@ -222,7 +222,7 @@ for i in range(2):
 ax[0].set(xticks=[0,1],yticks=[0,1],xlabel="Predicho",ylabel="Real",title=f"Corte={corte}")
 ax[1].plot(grid,M[:,0],label="Sensibilidad");ax[1].plot(grid,M[:,1],label="Especificidad");ax[1].axvline(corte,color="gray",ls="--")
 ax[1].set(xlabel="Punto de corte",ylabel="Proporción",ylim=(0,1),title="El corte cambia los errores, no el modelo");ax[1].legend();fig.tight_layout()
-print("Conclusión: bajar el corte permite detectar más positivos a costa de más falsas alarmas. No existe un 0.5 óptimo para todo: depende del costo de cada error. Clasificar bien y dar probabilidades bien calibradas son propiedades distintas.")`
+print("Conclusión: bajar el corte permite detectar más positivos a costa de más falsas alarmas. No existe un 0.5 óptimo para todo: depende del costo de cada error. Clasificar bien y dar probabilidades bien calibradas son propiedades distintas. La línea de sensibilidad capta el % de positivos reales y la de especificidad el % de negativos reales")`
 },
 {
 id:"ic3-causalidad",title:"12 Clase 3 · Predecir no es identificar un efecto causal",
