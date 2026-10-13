@@ -14,6 +14,10 @@
   let currentCourse = ECON_COURSES[0].id;
   let currentExample;
   let running = false;
+  const selectedClasses = {};
+  function exampleClass(example) {
+    return Number(example.classNumber || (example.title.match(/Clase\s*(\d+)/i) || [])[1] || 1);
+  }
 
   const pdfColors = ["lime", "blue", "orange"];
   (window.ECON_PDF_FILES || []).forEach((file, index) => {
@@ -100,7 +104,22 @@
   modal.addEventListener("click", (event) => { if (event.target === modal) modal.close(); });
 
   function drawExamples() {
-    const examples = ECON_PYTHON_EXAMPLES.filter((example) => example.course === currentCourse);
+    const allExamples = ECON_PYTHON_EXAMPLES.filter((example) => example.course === currentCourse);
+    const classes = [...new Set([...allExamples.map(exampleClass), ...ECON_SLIDES.filter((s) => s.course === currentCourse).map((s) => Number(s.number))])].sort((a,b) => a-b);
+    if (!classes.includes(selectedClasses[currentCourse])) selectedClasses[currentCourse] = classes[0];
+    const selected = selectedClasses[currentCourse];
+    const tabs = document.querySelector("#econ-class-tabs");
+    tabs.innerHTML = classes.map((n) => `<button type="button" data-class="${n}" aria-pressed="${n === selected}" class="${n === selected ? "is-active" : ""}">Clase ${String(n).padStart(2,"0")}</button>`).join("");
+    tabs.querySelectorAll("button").forEach((button) => button.addEventListener("click", () => {
+      if (running) return;
+      selectedClasses[currentCourse] = Number(button.dataset.class);
+      drawExamples();
+    }));
+    const examples = allExamples.filter((example) => exampleClass(example) === selected);
+    document.querySelector("#econ-class-empty").hidden = examples.length !== 0;
+    document.querySelector(".econ-lab").hidden = examples.length === 0;
+    currentExample = undefined;
+    run.disabled = !pyodide || examples.length === 0;
     document.querySelector("#econ-examples").innerHTML = examples.map((example, index) => `<button class="econ-example ${index === 0 ? "is-active" : ""}" data-id="${example.id}">${example.title}</button>`).join("");
     document.querySelectorAll(".econ-example").forEach((button) => button.addEventListener("click", () => selectExample(ECON_PYTHON_EXAMPLES.find((example) => example.id === button.dataset.id))));
     if (examples.length) selectExample(examples[0]);
@@ -121,7 +140,7 @@
       status.classList.add("is-ready");
       status.innerHTML = "<i></i> Python listo";
       result.textContent = "Listo. Presiona Ejecutar para ver el resultado.";
-      run.disabled = false;
+      run.disabled = !currentExample;
     } catch (error) {
       status.classList.add("is-error");
       status.innerHTML = "<i></i> No se pudo cargar";
@@ -130,7 +149,7 @@
   }
 
   async function runPython() {
-    if (!pyodide || running) return;
+    if (!pyodide || running || !currentExample) return;
     running = true;
     const source = code.value;
     code.readOnly = true;
@@ -195,7 +214,7 @@ _econ_images
 
   run.addEventListener("click", runPython);
   code.addEventListener("keydown", (event) => { if (event.key === "Enter" && event.shiftKey) { event.preventDefault(); runPython(); } });
-  document.querySelector("#econ-reset").onclick = () => selectExample(currentExample);
+  document.querySelector("#econ-reset").onclick = () => { if (currentExample) selectExample(currentExample); };
   selectCourse(currentCourse);
   startPython();
 }());

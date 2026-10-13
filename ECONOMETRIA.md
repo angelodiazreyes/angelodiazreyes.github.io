@@ -159,7 +159,24 @@ Las ediciones en el navegador son temporales; para publicarlas, cambia el archiv
 Restaurar recupera el ejemplo publicado. Todos los datos salariales son descriptivos;
 las simulaciones especifican sus propios efectos verdaderos y supuestos.
 
-### Otros ejemplos
+### Clase 3 de Inferencia Causal y pestañas por clase
+
+- PDF: `files/clases/inferencia-causal/03-respuesta-binaria.pdf`.
+- Los 12 ejercicios están en `assets/js/inferencia-clase3.js`: variable latente,
+  modelo lineal, verosimilitud, logit/probit, AME/MEM, cambios discretos,
+  perfiles, odds ratios, pseudo-R²/AIC/BIC, calibración/HL, clasificación y causalidad.
+- Los datos son **simulados**, no reproducen la base de las capturas de Stata.
+  Cada bloque incluye sus importaciones y funciones; usa NumPy, Matplotlib y SciPy.
+- Python Lab ahora separa los ejemplos por **Clase 01, Clase 02, etc.**, en ambos cursos.
+  No se modificaron los códigos de clases anteriores. Una clase con PDF pero sin
+  código muestra un aviso, sin mezclar ejercicios de otra clase.
+- Para un nuevo ejercicio, especifica `classNumber: 3` (o el número correspondiente).
+  Para los antiguos se reconoce `Clase N` en el título; sin número se usa Clase 1.
+  Las pestañas se crean automáticamente a partir de los ejemplos y los PDFs.
+- Conserva nombres como `01 Clase 3 · Nombre del ejercicio`. Los cambios hechos
+  en el editor web son temporales; para guardarlos modifica este archivo en GitHub.
+
+### Añadir ejemplos
 
 Dentro de `ECON_PYTHON_EXAMPLES`, copia un ejemplo y cambia sus campos. El campo `course` determina en qué curso aparecerá:
 
@@ -167,6 +184,7 @@ Dentro de `ECON_PYTHON_EXAMPLES`, copia un ejemplo y cambia sus campos. El campo
 {
   id: "mi-ejercicio",
   course: "inferencia-causal",
+  classNumber: 3,
   title: "Mi ejercicio",
   filename: "mi_ejercicio.py",
   code: `print("Hola")`
