@@ -102,8 +102,20 @@ Se cubren CEF, BLP, cálculo MCO (tabla original slide 50), minimización, resid
 R²/SER, precisión, outliers, unidades, logs, dependencia entre observaciones,
 pruebas t, intervalos, significancia económica y propiedades asintóticas.
 Los ejemplos de inferencia t usan SciPy y explicitan normalidad y homocedasticidad.
-Nota: la slide 61 afirma que R² siempre aumenta con n. El ejemplo 06 muestra que
-no ocurre necesariamente al agregar observaciones. El PDF original no se modifica.
+El PDF se reemplazó por la versión entregada el 18 de octubre de 2026 (111 páginas).
+Los 14 códigos originales se conservan sin modificaciones; sus referencias de página
+corresponden a la versión anterior. El ejemplo 06 sigue mostrando que R² no aumenta
+necesariamente al agregar observaciones.
+
+Los **ocho nuevos ejercicios 15–22** se editan por separado en
+`assets/js/aplicada-clase4-inferencia.js`. Cubren el cálculo de t, grados de libertad,
+regiones de rechazo, p-valores bilaterales/unilaterales, equivalencia con el IC,
+potencia, error tipo I y elección de la cola después de observar el resultado.
+Todos aparecen en la misma pestaña **Clase 04**, después de los 14 anteriores.
+El 22 reproduce la prueba de las slides 108–109 y advierte que, con n=22 y SE clásico,
+beta_hat=62 y SE=8 implican R²≈0.7502, no 0.42, en regresión simple con intercepto.
+Usa beta_hat/SE/n para la prueba sin inventar una base que reproduzca resúmenes
+incompatibles. Se publica el PDF entregado sin alterar su contenido.
 
 ### Clase 2 de Inferencia Causal: variables instrumentales
 
