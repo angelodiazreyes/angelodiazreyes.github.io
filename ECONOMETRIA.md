@@ -92,6 +92,23 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Clase 3 de Econometría Aplicada I: estructura de datos
+
+Los tres ejercicios de **Clase 03** están en `assets/js/aplicada-clase3.js`:
+
+- `01 Clase 3 · Corte transversal`: una fila por persona en un mismo año;
+  muestra la base y la distribución de la media entre muestras iid.
+- `02 Clase 3 · Panel`: una fila por persona-año; sigue los mismos IDs,
+  muestra trayectorias y permite simular observaciones faltantes al azar.
+- `03 Clase 3 · Series de tiempo`: una serie mensual con tendencia,
+  estacionalidad y componente AR(1); compara la incertidumbre de su promedio
+  con la fórmula iid, manteniendo fija la varianza marginal del componente.
+
+Son datos ficticios, no bases oficiales. Cada código incluye imports, una tabla,
+gráficos, parámetros editables y una conclusión. Usan NumPy, pandas y Matplotlib.
+El PDF `files/clases/econometria-aplicada-1/03.pdf` permanece sin cambios.
+Las referencias corresponden a sus 17 páginas, especialmente 2–7 y 8–17.
+
 ### Clase 4 de Econometría Aplicada I: regresión lineal simple
 
 Edita `assets/js/aplicada-clase4.js` para sus 14 simulaciones. Cada título identifica
