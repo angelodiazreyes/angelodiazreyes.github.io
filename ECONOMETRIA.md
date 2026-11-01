@@ -115,13 +115,13 @@ Edita `assets/js/aplicada-clase4.js` para sus 14 simulaciones. Cada título iden
 el número y clase, por ejemplo `01 Clase 4 · Media condicional: personas y promedios`.
 Los códigos visibles son independientes, editables, e incluyen gráficos y conclusiones.
 La Clase 4 está en `files/clases/econometria-aplicada-1/04.pdf`.
-Se cubren CEF, BLP, cálculo MCO (tabla original slide 50), minimización, residuos,
+Se cubren CEF, BLP, cálculo MCO (tabla de la slide 51), minimización, residuos,
 R²/SER, precisión, outliers, unidades, logs, dependencia entre observaciones,
 pruebas t, intervalos, significancia económica y propiedades asintóticas.
 Los ejemplos de inferencia t usan SciPy y explicitan normalidad y homocedasticidad.
-El PDF se reemplazó por la versión entregada el 18 de octubre de 2026 (111 páginas).
-Los 14 códigos originales se conservan sin modificaciones; sus referencias de página
-corresponden a la versión anterior. El ejemplo 06 sigue mostrando que R² no aumenta
+El PDF se reemplazó por la versión entregada el 1 de noviembre de 2026 (127 páginas).
+Los códigos 01–22 se conservan sin modificaciones; únicamente se actualizaron las
+referencias de página en sus descripciones. El ejemplo 06 sigue mostrando que R² no aumenta
 necesariamente al agregar observaciones.
 
 Los **ocho nuevos ejercicios 15–22** se editan por separado en
@@ -129,10 +129,44 @@ Los **ocho nuevos ejercicios 15–22** se editan por separado en
 regiones de rechazo, p-valores bilaterales/unilaterales, equivalencia con el IC,
 potencia, error tipo I y elección de la cola después de observar el resultado.
 Todos aparecen en la misma pestaña **Clase 04**, después de los 14 anteriores.
-El 22 reproduce la prueba de las slides 108–109 y advierte que, con n=22 y SE clásico,
+El 22 reproduce la prueba de las slides 124–125 y advierte que, con n=22 y SE clásico,
 beta_hat=62 y SE=8 implican R²≈0.7502, no 0.42, en regresión simple con intercepto.
 Usa beta_hat/SE/n para la prueba sin inventar una base que reproduzca resúmenes
 incompatibles. Se publica el PDF entregado sin alterar su contenido.
+
+Los **cinco ejercicios 23–27** se editan en `assets/js/aplicada-clase4-varianza.js`
+y completan los temas de varianza que faltaban. La pestaña **Clase 04** tiene 27 ejercicios:
+
+| Ejercicio | Tema y parámetros principales | Slides actuales |
+| --- | --- | --- |
+| 23 | Homocedasticidad vs. heteroscedasticidad: `intensidad=0` iguala ambos perfiles; `sigma` controla la dispersión promedio. | 94, 102–104 |
+| 24 | Heteroscedasticidad vs. sesgo: `delta` cambia la media del error; `n` es la muestra y `B` las repeticiones. | 66–68, 88–94, 105 |
+| 25 | SE clásico, HC0 y HC1; cobertura y falsos rechazos. `hetero=False` recupera varianza constante. | 105–109 |
+| 26 | SCR/n frente a SCR/(n−2): `n` controla cuánto importa perder dos grados de libertad. | 96–101 |
+| 27 | Varianza del intercepto y pendiente; centrar x y extrapolación. Cambia `x_min`, `x_max`, `n` y `sigma`. | 27, 95, 98–101 |
+
+Los cinco usan datos simulados y diseño x fijo, incluyen gráficos y conclusiones,
+y pueden ejecutarse independientemente. El 25 estima intercepto aunque el DGP
+tenga intercepto cero, como `lm(Y ~ X)` en las slides. No se selecciona una semilla
+para forzar un rechazo. Se usa referencia normal asintótica para comparar los tres
+SE; HC0/HC1 no dan una t exacta y pueden tener mala cobertura con n pequeño.
+Robustecer el SE no cambia MCO, no corrige endogeneidad ni dependencia entre unidades.
+HC0 usa la fórmula de la slide 106 y HC1 multiplica su varianza por n/(n−2).
+Referencias de las fórmulas:
+[HC0](https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.HC0_se.html)
+y [HC1](https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.HC1_se.html).
+
+Observaciones de revisión (PDF preservado, sin corregirlo):
+
+- Slide 98: la varianza del intercepto requiere el factor 1/n:
+  `sigma² * sum(x²)/(n*Sxx)`, equivalente a `sigma²*(1/n+xbar²/Sxx)`.
+  La slide 95 sí incluye ese factor; el ejercicio 27 usa la fórmula correcta.
+- Slide 107: con x fija y varianzas distintas, los errores son independientes,
+  pero no idénticamente distribuidos. La heteroscedasticidad sí es compatible
+  con muestreo iid de pares (X,Y) cuando X es aleatoria; son afirmaciones distintas.
+- El resultado de rechazo de la slide 109 es de una muestra concreta, no una
+  garantía general. El ejercicio 25 muestra la primera muestra y frecuencias
+  de repetición, sin forzar que clásico y robusto den decisiones distintas.
 
 ### Clase 2 de Inferencia Causal: variables instrumentales
 

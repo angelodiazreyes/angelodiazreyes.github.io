@@ -8,7 +8,7 @@ np.set_printoptions(precision=4,suppress=True)
 const A4T_LABS = [
 {
 id:"a4t-estadistico",title:"15 Clase 4 · Estadístico t: distancia en errores estándar",
-description:"Slides 93–94 y 104–105. Cambia beta_hat, beta_nula y se. No necesitas datos individuales para calcular t a partir de estos resúmenes.",
+description:"Slides 110 y 120–121. Cambia beta_hat, beta_nula y se. No necesitas datos individuales para calcular t a partir de estos resúmenes.",
 code:A4T_IMPORTS+String.raw`beta_hat,beta_nula,se=10.0,0.0,4.0  # CAMBIA
 if not np.all(np.isfinite([beta_hat,beta_nula,se])) or se<=0: raise ValueError("Usa valores finitos y SE positivo.")
 t_obs=(beta_hat-beta_nula)/se
@@ -26,7 +26,7 @@ print("Conclusión: t cuenta cuántos errores estándar separan la estimación d
 },
 {
 id:"a4t-distribucion",title:"16 Clase 4 · Distribución t: por qué importan los grados de libertad",
-description:"Slide 95. Compara t con normal y simula T=Z/raíz(V/nu), con Z normal y V chi-cuadrado independientes. En regresión simple nu=n−2.",
+description:"Slide 111. Compara t con normal y simula T=Z/raíz(V/nu), con Z normal y V chi-cuadrado independientes. En regresión simple nu=n−2.",
 code:A4T_IMPORTS+String.raw`grados=[5,20,100]; nu=20; B=20000; alfa=.05
 if not grados or min(grados)<1 or nu<1 or not 100<=B<=200000 or not 0<alfa<1: raise ValueError("Usa grados positivos, 100<=B<=200000 y 0<alfa<1.")
 z=rng.normal(size=B);v=rng.chisquare(nu,size=B);sim=z/np.sqrt(v/nu)
@@ -44,7 +44,7 @@ print("Conclusión: con pocos grados de libertad hay más resultados extremos qu
 },
 {
 id:"a4t-bilateral",title:"17 Clase 4 · Dos colas: alfa, valor crítico y p-valor",
-description:"Slides 96–99. Reproduce t=2.5, nu=20 y compara alfa=5% con 1%. En rojo se muestra la regla elegida; en verde, el área más extrema que el resultado observado.",
+description:"Slides 112–115. Reproduce t=2.5, nu=20 y compara alfa=5% con 1%. En rojo se muestra la regla elegida; en verde, el área más extrema que el resultado observado.",
 code:A4T_IMPORTS+String.raw`t_obs,nu,alfa=2.5,20,.05  # Prueba t_obs=1.5 o alfa=.01
 if not np.isfinite(t_obs) or nu<1 or not 0<alfa<1: raise ValueError("Revisa t, nu y alfa.")
 crit=student.ppf(1-alfa/2,nu);pvalor=2*student.sf(abs(t_obs),nu)
@@ -64,7 +64,7 @@ print("Conclusión: alfa fija de antemano cuánto riesgo de falso rechazo acepta
 },
 {
 id:"a4t-unilateral",title:"18 Clase 4 · La alternativa decide qué cola mirar",
-description:"Slides 100–103. Compara pruebas bilateral, derecha e izquierda usando exactamente el mismo estadístico. Cambia t_obs de 2.5 a −2.5.",
+description:"Slides 116–119. Compara pruebas bilateral, derecha e izquierda usando exactamente el mismo estadístico. Cambia t_obs de 2.5 a −2.5.",
 code:A4T_IMPORTS+String.raw`t_obs,nu,alfa=2.5,20,.05
 if not np.isfinite(t_obs) or nu<1 or not 0<alfa<1: raise ValueError("Revisa t, nu y alfa.")
 pvalores=[2*student.sf(abs(t_obs),nu),student.sf(t_obs,nu),student.cdf(t_obs,nu)]
@@ -84,7 +84,7 @@ print("Conclusión: un t positivo grande apoya beta>beta0, pero no beta<beta0. N
 },
 {
 id:"a4t-intervalo",title:"19 Clase 4 · Intervalo de confianza y prueba: la misma información",
-description:"Slides 104–106. Cambia la hipótesis nula sin volver a estimar. Se muestran todos los valores de beta0 y sus p-valores bilaterales.",
+description:"Slides 120–122. Cambia la hipótesis nula sin volver a estimar. Se muestran todos los valores de beta0 y sus p-valores bilaterales.",
 code:A4T_IMPORTS+String.raw`beta_hat,se,nu,alfa,beta_nula=65.0,10.0,20,.05,0.0
 if se<=0 or nu<1 or not 0<alfa<1 or not np.all(np.isfinite([beta_hat,se,beta_nula])): raise ValueError("Revisa parámetros.")
 crit=student.ppf(1-alfa/2,nu);lo=beta_hat-crit*se;hi=beta_hat+crit*se
@@ -104,7 +104,7 @@ print("Conclusión: usando el mismo método, los valores fuera del IC se rechaza
 },
 {
 id:"a4t-potencia",title:"20 Clase 4 · Error tipo I, tipo II y potencia",
-description:"Slide 110 y extensión. Repite regresiones con diseño fijo y errores clásicos normales. Compara falsos rechazos cuando H0 es cierta y detección de efectos cuando es falsa.",
+description:"Slide 126 y extensión. Repite regresiones con diseño fijo y errores clásicos normales. Compara falsos rechazos cuando H0 es cierta y detección de efectos cuando es falsa.",
 code:A4T_IMPORTS+String.raw`tamanos=[22,60,200]; B=2000; sigma=1.0; alfa=.05; beta_nula=0.0
 efectos=np.array([0,.1,.2,.4,.6])  # Diferencias beta verdadero - beta_nula
 if B<100 or min(tamanos)<3 or sigma<=0 or not 0<alfa<1 or B*max(tamanos)>2000000: raise ValueError("Usa B>=100,n>=3,sigma>0,0<alfa<1 y B*max(n)<=2 millones.")
@@ -127,7 +127,7 @@ print("Conclusión: cuando H0 es cierta, una prueba válida todavía rechaza apr
 },
 {
 id:"a4t-elegir-cola",title:"21 Clase 4 · Elegir la cola después de ver los datos",
-description:"Slide 103 y cierre. Simulación bajo H0: compara una alternativa predefinida con elegir la dirección que favorece el resultado. No cambia el estimador, cambia la regla de decisión.",
+description:"Slide 119 y cierre. Simulación bajo H0: compara una alternativa predefinida con elegir la dirección que favorece el resultado. No cambia el estimador, cambia la regla de decisión.",
 code:A4T_IMPORTS+String.raw`nu,B,alfa=20,30000,.05
 if nu<1 or not 100<=B<=200000 or not 0<alfa<.5: raise ValueError("Usa nu>=1,100<=B<=200000,0<alfa<.5.")
 t=rng.standard_t(nu,size=B)  # H0 verdadera; referencia exacta bajo supuestos clásicos normales
@@ -144,7 +144,7 @@ print("Conclusión: buscar después la cola que da el p más pequeño ofrece dos
 },
 {
 id:"a4t-salario",title:"22 Clase 4 · Actividad de las slides: educación y salario",
-description:"Slides 108–109. Reproduce beta_hat=62, SE=8 y n=22. También comprueba la coherencia del R² reportado con esos resúmenes bajo MCO simple y SE clásico.",
+description:"Slides 124–125. Reproduce beta_hat=62, SE=8 y n=22. También comprueba la coherencia del R² reportado con esos resúmenes bajo MCO simple y SE clásico.",
 code:A4T_IMPORTS+String.raw`beta_hat,se,n,beta_nula,alfa=62.0,8.0,22,0.0,.05
 r2_reportado=.42  # Valor en la slide; se verifica, no se usa para calcular t
 if n<3 or se<=0 or not 0<alfa<1 or not 0<=r2_reportado<1: raise ValueError("Revisa n, SE, alfa y R².")

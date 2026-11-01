@@ -20,7 +20,7 @@ def ajustar(x,y):
 const A4_LABS=[
 {
  id:"a4-cef",title:"01 Clase 4 · Media condicional: personas y promedios",
- description:"Slides 8–18 y 85. Salarios hipotéticos en miles de pesos. Cambia la cantidad por grupo y el ruido: las medias de grupo aproximan la CEF y la media total pondera según tamaños.",
+ description:"Slides 8–18 y 86. Salarios hipotéticos en miles de pesos. Cambia la cantidad por grupo y el ruido: las medias de grupo aproximan la CEF y la media total pondera según tamaños.",
  code:A4_IMPORTS+String.raw`educ=np.array([10,12,14,16,18])
 medias=np.array([700,850,1000,1160,1300.])
 cantidades=np.array([100,300,400,150,50])  # Puede modificar; enteros positivos
@@ -61,7 +61,7 @@ print("Conclusión: la CEF aprovecha todo el patrón promedio; la mejor recta so
 },
 {
  id:"a4-calculo",title:"03 Clase 4 · MCO paso a paso con los datos de las slides",
- description:"Slides 41–54. Reproduce la tabla de la diapositiva 50. Puedes modificar x e y; imprime desviaciones, productos, pendiente e intercepto, y compara con la solución matricial.",
+ description:"Slides 41–55. Reproduce la tabla de la diapositiva 51. Puedes modificar x e y; imprime desviaciones, productos, pendiente e intercepto, y compara con la solución matricial.",
  code:A4_IMPORTS+String.raw`x=np.array([11,12,11,8,12,16,18,12,12,17,16,13,12,12,12.])
 y=np.array([3.10,3.24,3,6,5.30,8.75,11.25,5,3.60,18.18,6.25,8.13,8.77,5.50,22.20])
 `+A4_FIT+String.raw`
@@ -103,7 +103,7 @@ print("Conclusión: sumar errores con signo permite que se cancelen, incluso si 
 },
 {
  id:"a4-residuos",title:"05 Clase 4 · Error verdadero y residuo: cero no prueba exogeneidad",
- description:"Slides 14–15, 30, 56 y 63–67. delta conecta x con el error estructural. Cambia delta a cero y compara el error conocido en la simulación con los residuos MCO.",
+ description:"Slides 14–15, 30, 57 y 64–68. delta conecta x con el error estructural. Cambia delta a cero y compara el error conocido en la simulación con los residuos MCO.",
  code:A4_IMPORTS+String.raw`n,beta,delta=500,2.0,1.0
 if n<3: raise ValueError("Usa n>=3.")
 x=rng.normal(size=n);e=rng.normal(size=n);u=delta*x+e;y=1+beta*x+u
@@ -121,7 +121,7 @@ print("Conclusión: MCO absorbe en la pendiente la parte del error que se mueve 
 },
 {
  id:"a4-r2",title:"06 Clase 4 · R² y SER: ajuste y ruido",
- description:"Slides 57–62. Cambia sigma y beta. Compara variación total, explicada y residual. Observa también que R² puede subir o bajar al incorporar nuevas observaciones.",
+ description:"Slides 58–63. Cambia sigma y beta. Compara variación total, explicada y residual. Observa también que R² puede subir o bajar al incorporar nuevas observaciones.",
  code:A4_IMPORTS+String.raw`n,beta,sigma=1000,2.0,3.0
 if n<30 or sigma<=0: raise ValueError("Usa n>=30 y sigma>0.")
 x=rng.normal(size=n);y=1+beta*x+rng.normal(0,sigma,n)
@@ -140,7 +140,7 @@ print("Conclusión: R² indica cuánto mejora la recta frente a predecir siempre
 },
 {
  id:"a4-precision",title:"07 Clase 4 · Qué hace más precisa una pendiente",
- description:"Slides 53, 83–89 y 92. Repite muestras con diferentes n, dispersión de x y ruido. B es la cantidad de regresiones repetidas. Compara distribución de pendientes y SE homocedástico promedio.",
+ description:"Slides 54, 90 y 94–101. Repite muestras con diferentes n, dispersión de x y ruido. B es la cantidad de regresiones repetidas. Compara distribución de pendientes y SE homocedástico promedio.",
  code:A4_IMPORTS+String.raw`B,beta=500,2.0
 escenarios=[(50,1.,1.),(500,1.,1.),(50,3.,1.),(50,1.,3.)]  # (n,SD de x,SD del error)
 if B<2 or any(n<3 or sx<=0 or su<=0 or n*B>2000000 for n,sx,su in escenarios): raise ValueError("Usa B>=2,n>=3, desviaciones>0 y B*n<=2 millones.")
@@ -159,7 +159,7 @@ print("Conclusión: es más fácil aprender cómo cambia y cuando tenemos más p
 },
 {
  id:"a4-outlier",title:"08 Clase 4 · Un punto extremo puede mover la recta",
- description:"Slide 69. Cambia x_nuevo e y_nuevo y compara el ajuste con y sin ese punto. Alta palanca y gran residuo conjuntamente pueden producir mucha influencia.",
+ description:"Slide 70. Cambia x_nuevo e y_nuevo y compara el ajuste con y sin ese punto. Alta palanca y gran residuo conjuntamente pueden producir mucha influencia.",
  code:A4_IMPORTS+String.raw`n,x_nuevo,y_nuevo=50,15.0,-10.0
 if n<3: raise ValueError("Usa n>=3.")
 x=rng.uniform(0,5,n);y=1+2*x+rng.normal(0,1,n)
@@ -176,7 +176,7 @@ print("Conclusión: un punto lejos del centro de x tiene capacidad de inclinar l
 },
 {
  id:"a4-unidades",title:"09 Clase 4 · Cambiar unidades sin cambiar la relación",
- description:"Slides 73–77. cy cambia la unidad de y y cx la de x. Ejemplo: de miles de pesos a pesos, cy=1000; de años a meses, cx=12. R² se conserva.",
+ description:"Slides 74–78. cy cambia la unidad de y y cx la de x. Ejemplo: de miles de pesos a pesos, cy=1000; de años a meses, cx=12. R² se conserva.",
  code:A4_IMPORTS+String.raw`n,cx,cy=200,12.0,1000.0
 if n<3 or cx<=0 or cy<=0: raise ValueError("Usa n>=3 y factores positivos.")
 x=rng.uniform(8,18,n);y=280+62*x+rng.normal(0,180,n)
@@ -195,7 +195,7 @@ print("Conclusión: la cifra de la pendiente depende de la regla de medición. U
 },
 {
  id:"a4-log",title:"10 Clase 4 · Niveles y logaritmos: interpretar el cambio",
- description:"Slides 24 y 78–80. Cambia modelo entre nivel-nivel, nivel-log, log-nivel y log-log. Compara cambios exactos y aproximaciones; para log(y) la curva exponenciada describe la mediana condicional del modelo simulado.",
+ description:"Slides 24 y 79–81. Cambia modelo entre nivel-nivel, nivel-log, log-nivel y log-log. Compara cambios exactos y aproximaciones; para log(y) la curva exponenciada describe la mediana condicional del modelo simulado.",
  code:A4_IMPORTS+String.raw`modelo="log-nivel"
 n,beta,sigma,x0,dx=1000,.08,.25,10.0,1.0
 opciones=["nivel-nivel","nivel-log","log-nivel","log-log"]
@@ -222,7 +222,7 @@ print("Conclusión: con log(y) hablamos de cambios porcentuales; con log(x), de 
 },
 {
  id:"a4-iid",title:"11 Clase 4 · Muestreo: muchas personas no siempre son mucha información",
- description:"Slides 64 y 68. Personas agrupadas en G escuelas, con m personas por escuela. x es compartida en cada escuela y el error incluye un shock común. Contrasta SE ingenuo con SD verdadera condicional conocida por el simulador.",
+ description:"Slides 65 y 69. Personas agrupadas en G escuelas, con m personas por escuela. x es compartida en cada escuela y el error incluye un shock común. Contrasta SE ingenuo con SD verdadera condicional conocida por el simulador.",
  code:A4_IMPORTS+String.raw`G,m,B,beta,sd_grupo=30,10,400,2.0,2.0
 if G<3 or m<1 or B<2 or sd_grupo<0 or G*m*B>2000000: raise ValueError("Usa G>=3,m>=1,B>=2,sd_grupo>=0 y G*m*B<=2 millones.")
 `+A4_FIT+String.raw`
@@ -244,7 +244,7 @@ print("Conclusión: personas de la misma escuela comparten parte de la suerte. C
 },
 {
  id:"a4-inferencia",title:"12 Clase 4 · Prueba t, p-valor e intervalos de confianza",
- description:"Slides 90–95. Repite B regresiones con errores normales, independientes y homocedásticos. Cambia beta, beta_nula y n. La t con n-2 grados es exacta bajo estos supuestos y x fija.",
+ description:"Slides 110–122. Repite B regresiones con errores normales, independientes y homocedásticos. Cambia beta, beta_nula y n. La t con n-2 grados es exacta bajo estos supuestos y x fija.",
  code:A4_IMPORTS+String.raw`from scipy.stats import t as student
 n,B,beta,beta_nula,sigma=80,500,.3,0.0,1.0
 if n<3 or B<2 or sigma<=0 or n*B>2000000: raise ValueError("Usa n>=3,B>=2,sigma>0 y n*B<=2 millones.")
@@ -266,7 +266,7 @@ print("Conclusión: un intervalo al 95% es un procedimiento que cubre el paráme
 },
 {
  id:"a4-significancia",title:"13 Clase 4 · Significativo no siempre significa importante",
- description:"Slides 96 y 98. Cambia el efecto beta y el umbral de importancia económica. Mismo modelo, muestras crecientes: el efecto puede ser pequeño aunque el p-valor sea muy bajo.",
+ description:"Slide 123. Cambia el efecto beta y el umbral de importancia económica. Mismo modelo, muestras crecientes: el efecto puede ser pequeño aunque el p-valor sea muy bajo.",
  code:A4_IMPORTS+String.raw`from scipy.stats import t as student
 beta,sigma,umbral_importante=.03,1.0,.20
 tamanos=[50,500,5000,20000]
@@ -287,7 +287,7 @@ print("Conclusión: con suficientes datos podemos detectar efectos diminutos. Un
 },
 {
  id:"a4-asintotica",title:"14 Clase 4 · Consistencia y normalidad: qué cambia con n",
- description:"Slides 81–89. Ruido exponencial centrado, independiente de x, más delta*x. Cambia delta: con cero hay exogeneidad; con otro valor, aumentar n no corrige el sesgo.",
+ description:"Slides 82–90. Ruido exponencial centrado, independiente de x, más delta*x. Cambia delta: con cero hay exogeneidad; con otro valor, aumentar n no corrige el sesgo.",
  code:A4_IMPORTS+String.raw`B,beta,delta=600,2.0,0.0
 tamanos=[30,100,500,1500]
 if B<2 or min(tamanos)<3 or B*max(tamanos)>2000000: raise ValueError("Usa B>=2,n>=3 y B*max(n)<=2 millones.")
