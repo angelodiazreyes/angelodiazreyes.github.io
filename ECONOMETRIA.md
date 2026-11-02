@@ -92,6 +92,63 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Clase 5 de Econometría Aplicada I: regresión lineal múltiple
+
+El PDF de 68 páginas entregado el 1 de noviembre de 2026 se conserva sin cambios
+en `files/clases/econometria-aplicada-1/05.pdf`. Los **16 ejercicios de Clase 05**
+se editan en `assets/js/aplicada-clase5.js`, con títulos `01 Clase 5 · ...`.
+Cada código visible es independiente, editable, y contiene gráficos y una conclusión.
+`A5_IMPORTS` y `A5_MCO` se incorporan automáticamente en los ejemplos que los necesitan.
+
+| Ejercicio | Tema | Slides |
+| --- | --- | --- |
+| 01 | Tabla de 15 familias: matrices, estimación y predicciones de calefacción | 6–12 |
+| 02 | Plano de regresión y efectos parciales, manteniendo controles fijos | 2–5, 13–15 |
+| 03 | Regresión salarial con wage1, ajustes, residuos y SE clásicos | 35–36, 44–50 |
+| 04 | Cambios simultáneos en log-salario; elasticidad-renta del gasto | 16, 19 |
+| 05 | Unidades, transformación de coeficientes/SE e invariancia de t y R² | 17–18, 67 |
+| 06 | Experiencia al cuadrado, derivada, cambio finito y punto de giro | 4, 20–21 |
+| 07 | Cuatro observaciones: ortogonalidad, medias y descomposición de R² | 22–34, 37–41 |
+| 08 | R² al añadir variables; extensión: R² ajustado y error fuera de muestra | 37–41, 58 |
+| 09 | Frisch–Waugh–Lovell, residualización y grados de libertad del SE | 42–50 |
+| 10 | Identidad exacta entre pendientes simple y múltiple en wage1 | 51–53 |
+| 11 | Sesgo por variable omitida: cuatro combinaciones de signos | 54–60 |
+| 12 | Omitir x²: patrón no lineal en residuos y mala especificación | 5, 34, 56 |
+| 13 | Colinealidad perfecta, rango y no unicidad de coeficientes | 54–55 |
+| 14 | Variable irrelevante, multicolinealidad, VIF y precisión | 58, 61–64 |
+| 15 | Insesgadez condicional, n−k−1, varianza residual y SE de coeficientes | 57, 65–66 |
+| 16 | Gauss–Markov: MCO frente a otro estimador lineal insesgado | 68 |
+
+Los ejercicios 03, 09 y 10 llevan `dataset: "wage1"`: el ejecutor usa la copia
+local existente `assets/data/wage1.csv`. Para correrlos fuera de la web, coloca
+esa base junto al archivo Python. Los demás no requieren descargar bases.
+El 01 y 07 usan las tablas de las slides; el 04 es una calculadora con sus
+coeficientes, no una estimación nueva; los restantes generan datos ficticios.
+
+Parámetros sugeridos: `rho`/`rhos` (relación entre regresores), `gamma` (efecto
+de la variable omitida), `curvatura`, `n` (observaciones), `B` (repeticiones),
+`k` (regresores, sin contar intercepto), `sigma` (SD del ruido) y `controles`.
+El botón Restaurar deshace cambios temporales del navegador.
+
+Precisiones didácticas (el PDF no se altera):
+
+- Slide 21: con el modelo escrito allí, la derivada respecto de experiencia
+  es `beta2 + 2*beta3*exper`, no `beta1 + 2*beta2*exper`. El ejemplo 06 usa
+  los coeficientes correctos e incluye el cambio finito del término cuadrático.
+- Slides 42–50: residualizar solo x conserva la pendiente, pero no los SE ni
+  el R² de la regresión completa. El 09 muestra ambos métodos y recupera el SE
+  clásico con los residuos completos y los grados de libertad correspondientes.
+- Slide 59: la fórmula con la pendiente auxiliar muestral describe el sesgo
+  condicional en X. El 11 usa una población normal explícita con
+  `E(z|x)=rho*x` y varianzas unitarias, de modo que el sesgo poblacional es
+  `gamma*rho`; el 10 separa la identidad muestral de una interpretación causal.
+- Añadir controles no garantiza identificación causal. Los SE clásicos y
+  Gauss–Markov requieren sus supuestos, incluida homocedasticidad; BLUE se
+  refiere a estimadores lineales en y, condicionales a X, e insesgados.
+
+Referencias técnicas de contraste: [MCO](https://www.statsmodels.org/stable/examples/notebooks/generated/ols.html)
+y [VIF](https://www.statsmodels.org/stable/generated/statsmodels.stats.outliers_influence.variance_inflation_factor.html).
+
 ### Clase 3 de Econometría Aplicada I: estructura de datos
 
 Los tres ejercicios de **Clase 03** están en `assets/js/aplicada-clase3.js`:
