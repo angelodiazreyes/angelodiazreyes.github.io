@@ -92,6 +92,69 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Clase 4 de Inferencia Causal: multinomial, ordenado y bivariado
+
+Los **12 ejercicios de Clase 04** se editan en `assets/js/inferencia-clase4.js`.
+Los títulos siguen `01 Clase 4 · ...` y cada editor recibe un programa completo,
+con parámetros al comienzo, gráficos y conclusión. `parameters` contiene las
+asignaciones que aparecen bajo `PARÁMETROS QUE PUEDES CAMBIAR`; `code` contiene
+los cálculos. Las constantes `IC4_BASE`, `IC4_CHOICE`, `IC4_FISH`, `IC4_HEALTH`,
+`IC4_ORDER` e `IC4_BIV` incorporan las funciones que necesita cada programa.
+
+| Ejercicio | Tema | Slides |
+| --- | --- | --- |
+| 01 | Datos de pesca y transformación de ancho a largo | 5–6 |
+| 02 | Multinomial con ingreso y probabilidades | 12–18 |
+| 03 | Cambio de base e invariancia de probabilidades | 13–16 |
+| 04 | RRR, AME, MEM y cambios exactos | 14–19 |
+| 05 | Verosimilitud, LR, pseudo-R² y evaluación fuera de muestra | 4, 15–18 |
+| 06 | Logit condicional con precios y tasas de pesca | 7–11 |
+| 07 | Atributos de alternativas, constantes e ingreso por alternativa | 20–24 |
+| 08 | Efectos propios y cruzados; escenario de aumento de precio | 11, 22–24 |
+| 09 | Variable latente, umbrales y categorías ordenadas | 25–28 |
+| 10 | Logit ordenado de salud, AME/MEM y comparación multinomial | 29–32 |
+| 11 | Probit bivariado simulado: rho y probabilidades conjuntas | 33–37 |
+| 12 | Salud y visitas al médico: estimación bivariada, LR e IC de rho | 36–39 |
+
+Los ejercicios 01–08 tienen `dataset: "mus15"`; 10 y 12 usan `dataset: "mus18"`.
+El ejecutor coloca `assets/data/mus15data.csv` o `assets/data/mus18data_year2.csv`
+en el directorio virtual de Python antes de ejecutar. Los dos restantes son
+simulaciones sin base externa. Ver `assets/data/README.md` para procedencia,
+unidades y filtros. No se incorpora Tobit ni `mus16data` en esta clase.
+
+La estimación usa NumPy/SciPy y comprobaciones de convergencia, sin instalar
+Stata ni requerir otros ejemplos abiertos. En probit bivariado la CDF se calcula
+con integración determinista de Gauss–Legendre (40 nodos por defecto); 80 nodos
+reproducen los mismos resultados. Se compara el modelo conjunto con la restricción
+rho=0 usando LR, y se calcula un IC de rho mediante la transformación tanh.
+
+Referencias numéricas reproducidas de las slides/do-file:
+- Log L multinomial con ingreso: aproximadamente −1477.151; LR(3): 41.144.
+- Log L condicional sin constantes: −1311.9796.
+- Log L con atributos e ingreso: −1215.1376.
+- Log L ordenado: −4769.8525; pendientes en unidades originales:
+  edad −0.0292944, log-ingreso 0.2836537, enfermedades −0.0549905.
+- Log L bivariado: −6958.0751; rho 0.0282183; LR(1) 1.5295, p 0.2162.
+
+Precisiones didácticas incorporadas al código (sin alterar el PDF):
+- `asclogit` combina regresores de personas y alternativas con coeficientes fijos;
+  no es el mixed logit de coeficientes aleatorios. Base playa en los tres modelos.
+- Las probabilidades suman uno; sus cambios y derivadas suman cero. Un RRR de
+  0.867 reduce la razón relativa en 13.3%, no en 13.3 puntos porcentuales.
+- AME promedia derivadas individuales; MEM evalúa las características medias,
+  como `mfx` por defecto. Para cambios grandes se recalculan las probabilidades.
+- Pseudo-R² no es fracción de varianza ni tasa de aciertos. El ejercicio 05 usa
+  una partición de entrenamiento/prueba; no evalúa sobre la misma muestra ajustada.
+- El logit ordenado no agrega intercepto separado de los umbrales. El grupo de
+  salud más bajo une pobre y regular, como en el do-file.
+- Para las cuatro combinaciones binarias se usa
+  `Phi2(q1*eta1, q2*eta2; q1*q2*rho)`: también cambia el signo de la correlación.
+  La correlación de respuestas no es rho; no rechazar rho=0 no prueba independencia.
+
+Referencias: [asclogit](https://www.stata.com/manuals15/rasclogit.pdf),
+[biprobit](https://www.stata.com/manuals/rbiprobit.pdf),
+[logit ordenado](https://www.statsmodels.org/stable/examples/notebooks/generated/ordinal_regression.html).
+
 ### Clase 5 de Econometría Aplicada I: regresión lineal múltiple
 
 El PDF de 68 páginas entregado el 1 de noviembre de 2026 se conserva sin cambios
