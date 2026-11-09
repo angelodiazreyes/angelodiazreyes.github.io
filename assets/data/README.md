@@ -38,3 +38,24 @@ una evaluación causal ni recomendaciones médicas.
 
 Para ejecutar los ejemplos fuera de la web, guardar el CSV correspondiente en el
 directorio de trabajo del programa Python. La página lo carga automáticamente.
+
+# Econometría Aplicada I, Clase 6
+
+Copias docentes descargadas el 8 de noviembre de 2026 del paquete `wooldridge`
+publicado por su mantenedor en R-universe. Se seleccionaron únicamente las columnas
+utilizadas; no se modificaron valores, imputaron faltantes ni eliminaron filas.
+
+- `mlb1.csv`: 353 jugadores, columnas `lsalary`, `years`, `gamesyr`, `bavg`,
+  `hrunsyr`, `rbisyr`. Salarios de 1993 y estadísticas de carrera hasta 1992.
+  [Documentación y origen](https://justinmshea.github.io/wooldridge/reference/mlb1.html).
+  [CSV fuente](https://justinmshea.r-universe.dev/wooldridge/data/mlb1/csv).
+- `crime1.csv`: 2.725 personas, columnas `narr86`, `pcnv`, `ptime86`, `qemp86`,
+  `avgsen`, `tottime`. Datos de Grogger (1991), *Certainty vs. Severity of Punishment*.
+  `narr86` cuenta arrestos, `avgsen` es duración media de condena en meses y
+  `tottime` tiempo en prisión desde los 18 años en meses.
+  [Documentación y origen](https://justinmshea.github.io/wooldridge/reference/crime1.html).
+  [CSV fuente](https://justinmshea.r-universe.dev/wooldridge/data/crime1/csv).
+
+La web carga cada CSV automáticamente. Para ejecutar el código copiado a un `.py`, colocar
+su CSV en el directorio de trabajo. Los contrastes clásicos reproducen las slides;
+no verifican por sí mismos homocedasticidad ni identifican efectos causales.

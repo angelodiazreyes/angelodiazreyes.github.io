@@ -155,6 +155,41 @@ Referencias: [asclogit](https://www.stata.com/manuals15/rasclogit.pdf),
 [biprobit](https://www.stata.com/manuals/rbiprobit.pdf),
 [logit ordenado](https://www.statsmodels.org/stable/examples/notebooks/generated/ordinal_regression.html).
 
+### Clase 6 de Econometría Aplicada I: restricciones y pruebas conjuntas
+
+El PDF de 80 páginas está en `files/clases/econometria-aplicada-1/06.pdf`.
+Los **9 ejercicios de Clase 06** se editan en `assets/js/aplicada-clase6.js`.
+Cada uno tiene un título `01 Clase 6 · ...`, parámetros al inicio, gráficos y una
+conclusión intuitiva; cada programa funciona por separado y se puede copiar a un `.py`.
+
+1. Diferencia de coeficientes: covarianza y reparametrización (slides 26–29).
+2. Béisbol con `mlb1`: pruebas individuales, conjunta y global; F=t² cuando q=1
+   para la prueba bilateral (32–48).
+3. Mejora de ajuste por azar y distribución F bajo H0 (38–44 y 73–76).
+4. Cobb–Douglas: rendimientos constantes, RSS y cambio de dependiente (49–51).
+5. Restricciones editables `R beta = r`, MCO restringido y equivalencia Wald/RSS (52).
+6. Información adicional del rating y de los fundamentos, datos sintéticos (57–63).
+7. Solow básico/ampliado: restricciones débiles, fuertes y participaciones (64–72).
+8. LM con `crime1`: residuos restringidos y regresión auxiliar (77–80).
+9. F frente a LM en muestras finitas y grandes; errores normales/asimétricos (73–80).
+
+No se repiten los ejercicios básicos de t, intervalos, potencia, R² ajustado,
+colinealidad, FWL ni heteroscedasticidad de clases anteriores. La comparación de dos
+efectos usa t para una **nueva hipótesis lineal**, no vuelve a enseñar la prueba básica.
+Se mantienen todas las simulaciones previas. No se modificó el PDF proporcionado.
+Los cálculos se hacen con datos y precisión completa, sin copiar errores aritméticos
+o redondeos de las slides. El modelo de rating y los modelos de producción/Solow
+están expresamente identificados como simulados, no como réplicas de las tablas.
+
+Los dos CSV y sus fuentes están documentados en `assets/data/README.md`.
+El registro `ECON_A6_DATA` y los atributos del script en `_pages/econometria.html`
+permiten cargarlos automáticamente en el navegador, también con un subdirectorio
+de GitHub Pages. Para ejecutar un programa copiado fuera de la web, guardar el
+CSV correspondiente en su directorio de trabajo e instalar numpy, pandas, scipy y
+matplotlib. Los F/RSS y LM de esta clase son clásicos: requieren homocedasticidad;
+la F finita exacta requiere normalidad del error, y la referencia chi² de LM es
+asintótica. No rechazar una restricción no confirma que sea verdadera.
+
 ### Clase 5 de Econometría Aplicada I: regresión lineal múltiple
 
 El PDF de 68 páginas entregado el 1 de noviembre de 2026 se conserva sin cambios
