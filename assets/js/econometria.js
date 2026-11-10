@@ -166,7 +166,7 @@
         if (!response.ok) throw new Error("No se pudieron cargar los datos wage1. Revisa la conexión y vuelve a ejecutar.");
         pyodide.FS.writeFile("wage1.csv", await response.text());
       }
-      const data = (window.ECON_IC4_DATA || {})[currentExample.dataset] || (window.ECON_A6_DATA || {})[currentExample.dataset];
+      const data = (window.ECON_IC4_DATA || {})[currentExample.dataset] || (window.ECON_A6_DATA || {})[currentExample.dataset] || (window.ECON_IC5_DATA || {})[currentExample.dataset];
       if (data) {
         const response = await fetch(data.url);
         if (!response.ok) throw new Error("No se pudo cargar la base del ejercicio. Revisa la conexión y vuelve a ejecutar.");

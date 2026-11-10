@@ -39,6 +39,30 @@ una evaluación causal ni recomendaciones médicas.
 Para ejecutar los ejemplos fuera de la web, guardar el CSV correspondiente en el
 directorio de trabajo del programa Python. La página lo carga automáticamente.
 
+# Inferencia Causal, Clase 5
+
+Versiones CSV preparadas el 10 de noviembre de 2026 a partir de `mus16data.dta`
+y `MROZ.DTA` entregados por el docente. Se preservan los valores numéricos originales
+y los faltantes, seleccionando solo las columnas necesarias para los ejercicios.
+
+- `mus16data.csv`: 3.328 filas, 526 gastos cero y 2.802 positivos. Se conservan
+  `ambexp`, `age`, `female`, `educ`, `blhisp`, `totchr`, `ins`. Base docente de
+  Cameron y Trivedi, *Microeconometrics Using Stata*. `age` se mide en décadas
+  (3.3 representa 33 años); `ambexp` queda en sus unidades monetarias originales.
+  No se reinterpretan los gastos como pesos chilenos ni se eliminan los ceros.
+- `mroz.csv`: 753 filas. Se conservan `inlf`, `lwage`, `educ`, `exper`, `expersq`,
+  `nwifeinc`, `age`, `kidsge6`, `kidslt6`. Hay 428 salarios observados y 325 faltantes.
+  `inlf` indica participación laboral en 1975; `lwage` es logaritmo del salario por
+  hora; `nwifeinc` es ingreso familiar excluido el de la esposa en miles de dólares;
+  `age` y `exper` se miden en años. Los faltantes no se sustituyen por cero.
+  [Documentación de MROZ](https://justinmshea.github.io/wooldridge/reference/mroz.html).
+
+La web carga estos CSV automáticamente. Para usar un programa copiado a `.py`,
+guardar su CSV en el directorio de trabajo; requiere numpy, pandas, scipy y matplotlib.
+La simulación traduce el proceso del do-file de selección, no las extracciones exactas
+del generador aleatorio de Stata. Los dos archivos `.do` se usan como referencia y
+no se publican con sus rutas locales. Las aplicaciones son descriptivas y docentes.
+
 # Econometría Aplicada I, Clase 6
 
 Copias docentes descargadas el 8 de noviembre de 2026 del paquete `wooldridge`

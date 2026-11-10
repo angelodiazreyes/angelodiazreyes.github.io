@@ -92,6 +92,63 @@ En Google Slides selecciona **Archivo → Compartir → Publicar en la web → I
 
 ## Añadir un ejercicio de Python
 
+### Clase 5 de Inferencia Causal: Tobit y Heckman
+
+El PDF de 51 páginas está en `files/clases/inferencia-causal/05.pdf`, sin cambios
+respecto al archivo entregado. Los **12 ejercicios de Clase 05** se editan en
+`assets/js/inferencia-clase5.js`. Cada programa incluye parámetros al inicio,
+gráficos y una conclusión intuitiva, y se ejecuta independientemente.
+
+1. Censura inferior/superior, truncamiento y selección: qué observamos (slides 2–16).
+2. Horas de trabajo: MCO, Tobit y verosimilitud truncada (8–10, 18–22).
+3. Masa en cero, densidad positiva y verosimilitud (16–22).
+4. Tres predicciones y descomposición participación/monto (27–36).
+5. Aplicación médica: réplica del Tobit de Stata y diagnóstico de ajuste (23–26, 37).
+6. AME/MEM, unidades de edad y cambios discretos de dummies (27–36).
+7. Monte Carlo: normalidad y homocedasticidad mal especificadas (37).
+8. Extensión: dos partes cuando los ceros vienen de participación (6, 37).
+9. Selección y Heckman: traducción del do-file de simulación (38–46).
+10. Intuición de Mills y correlación de errores (41–44).
+11. Exclusiones fuertes, débiles e inválidas (40, 46).
+12. MROZ: probit, salarios observados, SE corregidos y bootstrap opcional (47–51).
+
+Los CSV se cargan automáticamente desde `assets/data/`; sus columnas y fuentes se
+documentan en el README de esa carpeta. No se publican columnas adicionales del
+archivo original. Los salarios faltantes de MROZ se conservan como faltantes.
+Los títulos siguen `01 Clase 5 · ...`; no se modifican las clases anteriores.
+
+Precisiones docentes incorporadas al código (sin editar el PDF):
+
+- Con `c=xb/sigma`, la derivada entre positivos es
+  `beta*(1-lambda(c)*(c+lambda(c)))`; el signo dentro del paréntesis en la slide 31
+  no se transcribe al código. Se verifica mediante diferencias finitas.
+- `age` de la base médica está en décadas; el selector permite mostrar efectos por
+  año o década. En MROZ la edad está en años.
+- `xb`, `E[Y|Y>0,x]` y `E[Y|x]` son objetos diferentes. AME promedia derivadas;
+  MEM evalúa en las medias. Para dummies se calcula el cambio exacto 0→1.
+- La segunda etapa de Heckman regresa **lwage**, no inlf (errata de la slide 48).
+  El coeficiente de Mills es `rho*sigma_u`, no siempre rho.
+- Se calcula la covarianza corregida de dos etapas del manual de Stata, incluyendo
+  la estimación de probit y la heteroscedasticidad inducida por la selección.
+  El bootstrap opcional remuestrea todas las filas y reestima ambas etapas.
+  Los SE ingenuos de OLS solo se muestran para comparación y se identifican como tales.
+- No rechazar Mills=0 no demuestra ausencia de selección. Las exclusiones, la
+  normalidad conjunta y las conclusiones causales requieren justificación adicional.
+- La base médica presenta un ajuste imperfecto de ceros y medias con Tobit; se
+  muestra esa discrepancia explícitamente. Tener ceros no valida el modelo.
+
+Referencias para las fórmulas:
+[predicciones de Tobit](https://www.stata.com/manuals/rtobitpostestimation.pdf),
+[Heckman, métodos y covarianza de dos etapas](https://www.stata.com/manuals/rheckman.pdf),
+[razón inversa de Mills](https://www.stata.com/support/faqs/statistics/inverse-mills-ratio/).
+
+Validación inicial: 12 programas y 9 variantes de parámetros, ejecución de todos
+en Pyodide y bootstrap de 199 muestras en el navegador. Se ejecutaron directamente
+`tobit`, `margins` y `heckman, twostep` en Stata con las bases adjuntas: coinciden
+coeficientes, log-verosimilitud, SE de Tobit, SE corregidos de Heckman y efectos
+marginales contrastados. El Tobit da log L=-26359.4236; Heckman da coeficiente
+Mills=0.0322619, SE=0.1336246 y p≈0.8092 en la especificación original.
+
 ### Clase 4 de Inferencia Causal: multinomial, ordenado y bivariado
 
 Los **12 ejercicios de Clase 04** se editan en `assets/js/inferencia-clase4.js`.
